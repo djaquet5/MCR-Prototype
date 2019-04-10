@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="Prototype">
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="52607" name="prototype">
+      <role componentId="52595" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>0</min>
+          <max>2147483647</max>
+        </multiplicity>
+      </role>
+      <role componentId="52553" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>0</min>
+          <max>2147483647</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="CLASS" id="52595" isAbstract="false" name="Programme" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="Operation" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <inheritance id="52594">
+      <child>52587</child>
+      <parent>52553</parent>
+    </inheritance>
+    <inheritance id="52593">
+      <child>52582</child>
+      <parent>52553</parent>
+    </inheritance>
+    <inheritance id="52592">
+      <child>52552</child>
+      <parent>52553</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="52587" isAbstract="false" name="PrototypeN" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="PrototypeN" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52582" isAbstract="false" name="Prototype2" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Prototype2" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="INTERFACE" id="52553" isAbstract="true" name="Prototype" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52552" isAbstract="false" name="Prototype1" visibility="PUBLIC">
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Prototype1" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="52592">
+      <line>
+        <point>
+          <x>341</x>
+          <y>151</y>
+        </point>
+        <point>
+          <x>341</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>95</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52593">
+      <line>
+        <point>
+          <x>521</x>
+          <y>151</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>95</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52594">
+      <line>
+        <point>
+          <x>701</x>
+          <y>151</y>
+        </point>
+        <point>
+          <x>701</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>521</x>
+          <y>95</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52607">
+      <line>
+        <point>
+          <x>301</x>
+          <y>41</y>
+        </point>
+        <point>
+          <x>441</x>
+          <y>41</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>338</x>
+        <y>46</y>
+        <w>64</w>
+        <h>17</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>305</x>
+        <y>45</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>405</x>
+        <y>46</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>309</x>
+        <y>13</y>
+        <w>22</w>
+        <h>17</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>412</x>
+        <y>13</y>
+        <w>22</w>
+        <h>17</h>
+      </multipliciteAssociation>
+    </relationView>
+    <componentView color="-2079" componentID="52552" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>260</x>
+        <y>150</y>
+        <w>150</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52553" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>440</x>
+        <y>10</y>
+        <w>150</w>
+        <h>84</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52582" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>440</x>
+        <y>150</y>
+        <w>150</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52587" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>620</x>
+        <y>150</y>
+        <w>150</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52595" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>150</x>
+        <y>20</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <note color="-2079" content="prototype-&gt;clone()">
+      <noteGeometry>
+        <x>150</x>
+        <y>100</y>
+        <w>131</w>
+        <h>30</h>
+      </noteGeometry>
+    </note>
+    <note color="-2079" content="Se copie lui même">
+      <noteGeometry>
+        <x>450</x>
+        <y>240</y>
+        <w>126</w>
+        <h>30</h>
+      </noteGeometry>
+    </note>
+  </umlView>
+</classDiagram>
