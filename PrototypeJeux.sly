@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="PrototypeJeu">
+    <inheritance id="52972">
+      <child>52882</child>
+      <parent>52877</parent>
+    </inheritance>
+    <inheritance id="52971">
+      <child>52881</child>
+      <parent>52877</parent>
+    </inheritance>
+    <inheritance id="52970">
+      <child>52880</child>
+      <parent>52877</parent>
+    </inheritance>
+    <inheritance id="52969">
+      <child>52879</child>
+      <parent>52877</parent>
+    </inheritance>
+    <inheritance id="52967">
+      <child>52878</child>
+      <parent>52650</parent>
+    </inheritance>
+    <inheritance id="52966">
+      <child>52877</child>
+      <parent>52650</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="52882" isAbstract="false" name="Konata" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52881" isAbstract="false" name="Izumi" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52880" isAbstract="false" name="Tsukasa" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52879" isAbstract="false" name="Kagami" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="52878" isAbstract="true" name="Monster" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="52877" isAbstract="true" name="MainCaracter" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="level" type="int" visibility="PRIVATE"/>
+      <method isAbstract="true" isStatic="false" name="levelUp" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <inheritance id="52876">
+      <child>52650</child>
+      <parent>52630</parent>
+    </inheritance>
+    <inheritance id="52875">
+      <child>52649</child>
+      <parent>52630</parent>
+    </inheritance>
+    <inheritance id="52874">
+      <child>52643</child>
+      <parent>52630</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="52650" isAbstract="true" name="Character" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="hp" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="mp" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="attack" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="magic" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="defense" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="magicDefense" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="displayImage" type="String" visibility="PRIVATE"/>
+    </entity>
+    <entity entityType="CLASS" id="52649" isAbstract="true" name="Stuff" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="52643" isAbstract="true" name="Decors" visibility="PUBLIC"/>
+    <entity entityType="INTERFACE" id="52630" isAbstract="true" name="Prototype" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="Clonable" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="52874">
+      <line>
+        <point>
+          <x>301</x>
+          <y>141</y>
+        </point>
+        <point>
+          <x>301</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>105</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52875">
+      <line>
+        <point>
+          <x>511</x>
+          <y>141</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>105</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52876">
+      <line>
+        <point>
+          <x>711</x>
+          <y>141</y>
+        </point>
+        <point>
+          <x>711</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>131</y>
+        </point>
+        <point>
+          <x>511</x>
+          <y>105</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52966">
+      <line>
+        <point>
+          <x>891</x>
+          <y>351</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>711</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>711</x>
+          <y>301</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52967">
+      <line>
+        <point>
+          <x>571</x>
+          <y>351</y>
+        </point>
+        <point>
+          <x>571</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>711</x>
+          <y>341</y>
+        </point>
+        <point>
+          <x>711</x>
+          <y>301</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52969">
+      <line>
+        <point>
+          <x>591</x>
+          <y>531</y>
+        </point>
+        <point>
+          <x>591</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>436</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52970">
+      <line>
+        <point>
+          <x>771</x>
+          <y>531</y>
+        </point>
+        <point>
+          <x>771</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>436</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52971">
+      <line>
+        <point>
+          <x>961</x>
+          <y>531</y>
+        </point>
+        <point>
+          <x>961</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>436</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="52972">
+      <line>
+        <point>
+          <x>1151</x>
+          <y>531</y>
+        </point>
+        <point>
+          <x>1151</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>501</y>
+        </point>
+        <point>
+          <x>891</x>
+          <y>436</y>
+        </point>
+      </line>
+    </relationView>
+    <componentView color="-2079" componentID="52630" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>430</x>
+        <y>20</y>
+        <w>150</w>
+        <h>84</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52643" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>220</x>
+        <y>140</y>
+        <w>150</w>
+        <h>55</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52649" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>430</x>
+        <y>140</y>
+        <w>150</w>
+        <h>55</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52650" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>630</x>
+        <y>140</y>
+        <w>150</w>
+        <h>160</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52877" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>810</x>
+        <y>350</y>
+        <w>150</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52878" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>490</x>
+        <y>350</y>
+        <w>150</w>
+        <h>55</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52879" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>510</x>
+        <y>530</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52880" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>690</x>
+        <y>530</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52881" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>880</x>
+        <y>530</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="52882" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>1070</x>
+        <y>530</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+  </umlView>
+</classDiagram>
