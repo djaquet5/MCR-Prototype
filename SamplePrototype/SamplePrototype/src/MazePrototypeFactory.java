@@ -14,7 +14,7 @@ public class MazePrototypeFactory extends MazeFactory {
    Maze createMaze () {
       Maze m = prototypeMaze.clone();
 
-      // On les éléments qu'on veut à m
+      // On crée les éléments qu'on veut à m
 
       return m;
    }
