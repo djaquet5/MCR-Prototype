@@ -1,9 +1,15 @@
 package Maze;
 
+import java.awt.*;
+
 public class EmptyCell extends Cell {
 
     private EmptyCell(EmptyCell rc) {
         super(rc);
+    }
+
+    public EmptyCell(){
+        super(Color.BLACK);
     }
 
     @Override
