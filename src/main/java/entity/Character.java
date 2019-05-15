@@ -1,7 +1,7 @@
-package Person;
+package entity;
 
-import Magic.Spell;
-import Stuff.Item;
+import magic.Spell;
+import stuff.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +20,10 @@ public abstract class Character {
     private String displayImage;
     private List<Spell> spellSlots;
     private Map<Item, Integer> inventory;
+
+    public Character() {
+
+    }
 
     public Character(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;

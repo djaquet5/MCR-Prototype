@@ -1,0 +1,28 @@
+Avant de commencer, le joueur doit choisir sa classe. Chaque classe dispose d'un pouvoir utilisable en combat, ainsi que de ses propres statistiques (vie, attaque, défense).
+Le joueur commence sa partie dans un donjon divisé en cases, comportant des murs. Son but est d'atteindre la sortie.
+Il utilise les flèches directionnelles pour se déplacer d'une case dans la direction souhaitée.
+
+Le donjon est envahi de monstres, qui se déplacent en même temps que le joueur.
+Chaque type de monstre à sa propre manière de se déplacer (agressif, fuyard, aléatoire, etc) ainsi que leur propre pouvoir en combat et leurs statisitiques (vie, attaque, défense).
+
+Un combat se lance lorsque le joueur se retrouve sur la même case qu'un monstre.
+Il se déroule de la manière suivante : chacun leur tour, les participants choisissent parmis 4 options :
+- Attaque -> fait perdre des points de vie à l'adversaire.
+- Pouvoir -> diffère selon le monstre / classe qui le lance. Possède un temps de relance.
+- Potion -> consomme une potion pour rendre de la vie. Les monstres peuvent en avoir une au maximum.
+- Fuite -> fait perdre des points de vie à l'utilisateur. Cette option n'est jamais utilisée par les monstres.
+
+Un combat peut se terminer de 3 manières différentes, lorsqu'un des 2 adversaires n'a plus de vie ou si le joueur fuit :
+- Le joueur gagne : il réapparait sur la case où le combat s'est lancé. Le monstre a disparu.
+- Le joueur fuit : il réapparait une case plus près de l'entrée du donjon (ou sur la 1ère case libre, lorsque c'est possible). Le monstre réapparait sur sa case.
+- Le joueur perd : il réapparait sur la case "Cimetierre". Le monstre réapparait sur sa case.
+
+Lorsque le joueur perd, il réapparait sur la case "Cimetierre", transformé en spectre. Il peut traverser les murs.
+Il doit retourner sur la case où il a perdu pour récupérer son corps afin de terminer le donjon.
+S'il rencontre un monstre en étant spectre, le joueur perd définitivement le jeu.
+
+Sur certaines cases peuvent se trouver des potions qui rendent de la vie. Le joueur les ramasse en marchant dessus.
+Il peut les utiliser hors combat en appuyant sur une touche, ou durant les combats en sélectionnant l'option correspondante.
+Le joueur ne peut pas consommer de potion si sa vie est déja au maximum. Les monstres ne peuvent pas ramasser de potion.
+
+Boss invocateurs, slimes qui se divisent, recrutement de héros
