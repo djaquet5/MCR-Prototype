@@ -1,6 +1,6 @@
-package Stuff;
+package stuff;
 
-import Person.Character;
+import entity.Character;
 
 public class Potion extends Item {
 

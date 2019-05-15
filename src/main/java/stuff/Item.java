@@ -1,8 +1,8 @@
 package Stuff;
 
-import Maze.ReachableCell;
-import Prototypal.Prototype;
-import Person.Character;
+import maze.ReachableCell;
+import prototypal.Prototype;
+import entity.Character;
 
 public abstract class Item implements Prototype {
     private String nom;
@@ -18,4 +18,6 @@ public abstract class Item implements Prototype {
     public void initialize(ReachableCell cell) {
         cell.addItem(this);
     }
+
+    public abstract void use(Character character);
 }

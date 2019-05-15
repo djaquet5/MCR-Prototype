@@ -1,6 +1,6 @@
-package Prototypal;
+package prototypal;
 
-import Maze.ReachableCell;
+import maze.ReachableCell;
 
 public interface Prototype extends Cloneable {
     public void initialize(ReachableCell cell);

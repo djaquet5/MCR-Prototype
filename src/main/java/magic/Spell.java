@@ -1,4 +1,4 @@
-package Magic;
+package magic;
 
 public class Spell {
     String name;

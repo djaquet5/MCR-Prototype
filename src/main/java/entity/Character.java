@@ -1,7 +1,7 @@
-package Person;
+package entity;
 
-import Magic.Spell;
-import Stuff.Item;
+import magic.Spell;
+import stuff.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +21,10 @@ public abstract class Character {
     private List<Spell> spellSlots;
     private Map<Item, Integer> inventory;
 
+    public Character() {
+
+    }
+
     public Character(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;
         this.mp = this.maxMp = mp;
@@ -34,7 +38,23 @@ public abstract class Character {
         inventory = new HashMap<Item, Integer>();
     }
 
-    public void setHp(int i){
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public int getMaxMp() {
+        return maxMp;
+    }
+
+    public void setMaxMp(int maxMp) {
+        this.maxMp = maxMp;
+    }
+
+    public void modifyHp(int i){
         hp = Math.min(hp + i, maxHp);
     }
 
@@ -42,7 +62,7 @@ public abstract class Character {
         return hp;
     }
 
-    public void setMp(int i){
+    public void modifyMp(int i){
         mp = Math.min(mp + i, maxMp);
     }
 
@@ -70,6 +90,30 @@ public abstract class Character {
         return displayImage;
     }
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    public void setMagic(int magic) {
+        this.magic = magic;
+    }
+
+    public void setMagicDefence(int magicDefence) {
+        this.magicDefence = magicDefence;
+    }
+
     public boolean isDead() {
         return hp <= 0;
     }
@@ -89,7 +133,7 @@ public abstract class Character {
         return inventory;
     }
 
-    private void addToinventory(Item item, int amount) {
+    public void addToinventory(Item item, int amount) {
         if (inventory.containsKey(item)) {
             inventory.put(item, inventory.get(item) + amount);
         } else {
@@ -97,21 +141,33 @@ public abstract class Character {
         }
     }
 
+    public void useItem(Item item) {
+        if (inventory.containsKey(item)) {
+            inventory.put(item, inventory.get(item) - 1);
+            item.use(this);
+            if (inventory.get(item) == 0) {
+                inventory.remove(item);
+            }
+        }
+    }
+
     public int attack(Character c){
         int damage = Math.max(this.attack + (int)(Math.random() * 13) - c.getDefence(), 1);
-        c.setHp(damage * -1);
+        c.modifyHp(damage * -1);
         return damage;
     }
 
-    public int castMagic(Character target, Spell spell){
+    public boolean castMagic(List<Character> targets, Spell spell){
         if(this.mp < spell.getMpCost()){
             System.out.println("Not enough Mana!");
-            return 0;
+            return false;
         }
-        int damage = Math.max((int)Math.floor(this.magic * spell.getPower() / 100) +
-                (int)(Math.random() * 13) - target.getMagicDefence(), 1);
-        target.setHp(damage * -1);
-        this.setMp(spell.getMpCost() * -1);
-        return damage;
+        for (Character target : targets) {
+            int damage = Math.max((int)Math.floor(this.magic * spell.getPower() / 100) +
+                    (int)(Math.random() * 13) - target.getMagicDefence(), 1);
+            target.modifyHp(damage * -1);
+            this.modifyMp(spell.getMpCost() * -1);
+        }
+        return true;
     }
 }

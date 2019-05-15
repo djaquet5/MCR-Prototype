@@ -1,7 +1,8 @@
-package Prototypal;
+package prototypal;
 
-import Maze.ReachableCell;
-import Stuff.*;
+
+import maze.*;
+import stuff.*;
 
 public class GameFacory{
     private Potion prototypePotion;
