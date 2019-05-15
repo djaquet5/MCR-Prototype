@@ -1,7 +1,6 @@
 package Stuff;
 
-import Maze.Cell;
-import Maze.ReachableCell;
+import Person.Character;
 
 public class Potion extends Item {
 
@@ -9,8 +8,8 @@ public class Potion extends Item {
         super("Potion", "PATH");
     }
 
-    public void initialize(ReachableCell cell) {
-
+    public void heal(Character character){
+        character.setHp((int) (character.getHp() * 0.5));
     }
 
     @Override
