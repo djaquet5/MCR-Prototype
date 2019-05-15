@@ -1,6 +1,5 @@
 package stuff;
 
-
 import entity.Character;
 
 public class Ether extends Item {

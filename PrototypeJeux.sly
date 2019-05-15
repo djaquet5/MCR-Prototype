@@ -193,7 +193,7 @@
     <entity entityType="INTERFACE" id="52630" isAbstract="true" name="Prototype" visibility="PUBLIC">
       <method isAbstract="true" isStatic="false" name="clone" returnType="Prototype" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
-    <entity entityType="CLASS" id="52649" isAbstract="true" name="Stuff" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="52649" isAbstract="true" name="stuff" visibility="PUBLIC"/>
     <entity entityType="CLASS" id="52650" isAbstract="true" name="Character" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="hp" type="int" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="maxHp" type="int" visibility="PRIVATE"/>

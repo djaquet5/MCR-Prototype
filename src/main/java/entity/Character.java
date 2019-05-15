@@ -144,7 +144,7 @@ public abstract class Character {
     public void useItem(Item item) {
         if (inventory.containsKey(item)) {
             inventory.put(item, inventory.get(item) - 1);
-            item.use(this);
+            item.heal(this);
             if (inventory.get(item) == 0) {
                 inventory.remove(item);
             }
