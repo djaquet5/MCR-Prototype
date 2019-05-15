@@ -1,6 +1,6 @@
-package Person.Hero;
+package entity.Hero;
 
-import Person.Character;
+import entity.Character;
 
 public abstract class Hero extends Character {
     private int lvl;
