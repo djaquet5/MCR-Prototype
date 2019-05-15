@@ -1,6 +1,6 @@
 package maze;
 
-import Stuff.Item;
+import stuff.Item;
 
 import java.util.LinkedList;
 

@@ -1,8 +1,8 @@
 package prototypal;
 
-import Maze.Cell;
-import Maze.ReachableCell;
-import Stuff.Item;
+import maze.Cell;
+import maze.ReachableCell;
+import stuff.Item;
 import stuff.Potion;
 
 public class GameFacory{
