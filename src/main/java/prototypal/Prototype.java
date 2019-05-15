@@ -1,4 +1,4 @@
-package Prototypal;
+package prototypal;
 
 import Maze.ReachableCell;
 

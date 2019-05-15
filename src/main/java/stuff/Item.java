@@ -1,8 +1,8 @@
 package stuff;
 
-import Maze.ReachableCell;
-import Prototypal.Prototype;
-import Person.Character;
+import maze.ReachableCell;
+import prototypal.Prototype;
+import entity.Character;
 
 public abstract class Item implements Prototype {
     private String nom;

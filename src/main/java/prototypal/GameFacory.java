@@ -1,9 +1,9 @@
-package Prototypal;
+package prototypal;
 
 import Maze.Cell;
 import Maze.ReachableCell;
 import Stuff.Item;
-import Stuff.Potion;
+import stuff.Potion;
 
 public class GameFacory{
     private Potion prototypePotion;

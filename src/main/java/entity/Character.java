@@ -22,7 +22,7 @@ public abstract class Character {
     private Map<Item, Integer> inventory;
 
     public Character() {
-        
+
     }
 
     public Character(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
