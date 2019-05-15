@@ -1,5 +1,7 @@
 package Prototypal;
 
+import Maze.ReachableCell;
+
 public interface Prototype extends Cloneable {
-    public void initialize(Cell case);
+    public void initialize(ReachableCell cell);
 }

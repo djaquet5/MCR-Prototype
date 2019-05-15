@@ -1,5 +1,7 @@
 package Prototypal;
 
+import Maze.Cell;
+import Maze.ReachableCell;
 import Stuff.Item;
 import Stuff.Potion;
 
@@ -11,7 +13,7 @@ public class GameFacory{
         prototypePotion = new Potion();
     }
 
-    public Item MakePotion(Cell cell) {
+    public Item MakePotion(ReachableCell cell) {
         Potion p = (Potion) prototypePotion.clone();
         p.initialize(cell);
         return p;

@@ -1,12 +1,15 @@
 package Stuff;
 
+import Maze.Cell;
+import Maze.ReachableCell;
+
 public class Potion extends Item {
 
     public Potion(){
         super("Potion", "PATH");
     }
 
-    public void initialize() {
+    public void initialize(ReachableCell cell) {
 
     }
 
