@@ -3,15 +3,15 @@ package Person;
 import Magic.Spell;
 
 public abstract class Character {
-    int hp;
-    int maxHp;
-    int mp;
-    int maxMp;
-    int attack;
-    int defence;
-    int magic;
-    int magicDefence;
-    String displayImage;
+    private int hp;
+    private int maxHp;
+    private int mp;
+    private int maxMp;
+    private int attack;
+    private int defence;
+    private int magic;
+    private int magicDefence;
+    private String displayImage;
 
     public Character(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;
@@ -25,9 +25,6 @@ public abstract class Character {
 
     public void setHp(int i){
         hp = Math.min(hp + i, maxHp);
-        if(hp < 0){
-            //Meurt
-        }
     }
 
     public int getHp(){
@@ -62,20 +59,24 @@ public abstract class Character {
         return displayImage;
     }
 
+    public boolean isDead() {
+        return hp <= 0;
+    }
+
     public int attack(Character c){
         int damage = Math.max(this.attack + (int)(Math.random() * 13) - c.getDefence(), 1);
         c.setHp(damage * -1);
         return damage;
     }
 
-    public int throwMagic(Character c, Spell s){
-        if(this.mp < s.getMpCost()){
-            throw new IllegalArgumentException("Vous n'avez pas assez de mp !");
+    public int castMagic(Character target, Spell spell){
+        if(this.mp < spell.getMpCost()){
+            throw new IllegalArgumentException("Not enough Mana!");
         }
-        int damage = Math.max((int)Math.floor(this.magic * s.getPower() / 100) +
-                (int)(Math.random() * 13) - c.getMagicDefence(), 1);
-        c.setHp(damage * -1);
-        this.setMp(s.getMpCost() * -1);
+        int damage = Math.max((int)Math.floor(this.magic * spell.getPower() / 100) +
+                (int)(Math.random() * 13) - target.getMagicDefence(), 1);
+        target.setHp(damage * -1);
+        this.setMp(spell.getMpCost() * -1);
         return damage;
     }
 }
