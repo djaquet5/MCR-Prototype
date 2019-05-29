@@ -39,5 +39,6 @@ public abstract class Cell implements PrototypeMaze {
         this.posY = posY;
     }
 
+    @Override
     public abstract Cell clone();
 }

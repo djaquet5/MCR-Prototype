@@ -22,6 +22,7 @@ public abstract class Character implements Prototype {
     private String displayImage;
     private List<Spell> spellSlots;
     private Map<Item, Integer> inventory;
+    private ReachableCell position;
 
     public Character() {
 
@@ -124,6 +125,8 @@ public abstract class Character implements Prototype {
         return spellSlots;
     }
 
+    public ReachableCell getPosition(){ return position; }
+
     public void learnSpell(Spell spell) {
         if (spellSlots.contains(spell))
             System.out.println("Spell already known!");
@@ -176,5 +179,6 @@ public abstract class Character implements Prototype {
 
     public void initialize(ReachableCell cell) {
         cell.addCharacter(this);
+        position = cell;
     }
 }

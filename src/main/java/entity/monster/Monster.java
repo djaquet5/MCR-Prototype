@@ -1,6 +1,8 @@
 package entity.monster;
 
 import entity.Character;
+import maze.Donjon;
+import maze.ReachableCell;
 
 public abstract class Monster extends Character {
 
@@ -10,6 +12,14 @@ public abstract class Monster extends Character {
         super(hp, mp, attack, defence, magic, magicDefence, displayImage);
         this.expPoint = expPoint;
     }
+
+    public void interactionDonjon(Donjon dj){
+        ReachableCell rc = dj.getRandomAdjacentReachableCell(this.getPosition());
+        getPosition().removeCharacter(this);
+        initialize(rc);
+    }
+
+    public abstract Monster clone();
 
     public int getExpPoint(){
         return expPoint;
