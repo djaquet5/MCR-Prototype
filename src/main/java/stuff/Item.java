@@ -14,4 +14,9 @@ public abstract class Item implements Prototype {
     }
 
     public abstract void heal(Character character);
+
+    @Override
+    public void initialize(ReachableCell cell) {
+        cell.addItem(this);
+    }
 }

@@ -14,4 +14,8 @@ public class Donjon {
             }
         }
     }
+
+    public boolean isReachable(int x, int y){
+        return false;
+    }
 }

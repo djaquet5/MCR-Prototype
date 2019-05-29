@@ -1,6 +1,7 @@
 package stuff;
 
 import entity.Character;
+import maze.ReachableCell;
 
 public class Potion extends Item {
 
