@@ -1,6 +1,7 @@
 package maze;
 
-import prototypal.GameFacory;
+
+import static prototypal.GameFacory.*;
 
 public class Donjon {
     private Cell[][] cellules;
@@ -9,9 +10,12 @@ public class Donjon {
         cellules = new Cell[x][y];
         for(int i = 0; i < x; ++i){
             for(int j = 0; j < y; ++j){
-
-                cellules[x][y] = GameFacory.MakeEmptyCell(this, x, y);
+                cellules[x][y] = MakeEmptyCell(this, x, y);
             }
         }
+    }
+
+    public boolean isReachable(int x, int y){
+        return false;
     }
 }

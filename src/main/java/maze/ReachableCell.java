@@ -1,7 +1,9 @@
 package maze;
 
 import stuff.Item;
+import entity.Character;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 public class ReachableCell extends Cell {
@@ -9,6 +11,10 @@ public class ReachableCell extends Cell {
     private Item item;
     public ReachableCell(ReachableCell rc) {
         super(rc);
+    }
+
+    public ReachableCell(){
+        super(Color.WHITE);
     }
 
     public void addItem(Item item){

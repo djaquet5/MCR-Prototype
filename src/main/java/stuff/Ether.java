@@ -5,7 +5,7 @@ import entity.Character;
 public class Ether extends Item {
 
     public Ether() {
-        super("Ether", "PATH");
+        super("Ether", "./icons/etherPotion.png");
     }
 
     public void heal(Character character){
