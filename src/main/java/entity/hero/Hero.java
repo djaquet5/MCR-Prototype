@@ -1,4 +1,4 @@
-package entity.Hero;
+package entity.hero;
 
 import entity.Character;
 
