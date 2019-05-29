@@ -1,6 +1,8 @@
 package entity;
 
 import magic.Spell;
+import maze.ReachableCell;
+import prototypal.Prototype;
 import stuff.Item;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Character {
+public abstract class Character implements Prototype {
     private int hp;
     private int maxHp;
     private int mp;
@@ -169,5 +171,10 @@ public abstract class Character {
             this.modifyMp(spell.getMpCost() * -1);
         }
         return true;
+    }
+
+
+    public void initialize(ReachableCell cell) {
+        cell.addCharacter(this);
     }
 }
