@@ -1,12 +1,9 @@
 package entity.monster;
 
 import controler.MapControler;
-import maze.Cell;
 import maze.Donjon;
-import maze.ReachableCell;
+import prototypal.Prototype;
 
-import java.util.LinkedList;
-import java.util.Random;
 
 public class Slime extends Monster{
     public Slime(){
@@ -20,8 +17,7 @@ public class Slime extends Monster{
     @Override
     public void interactionDonjon(Donjon dj){
         if(MapControler.getTurn() % 13 == 0){
-
-            Slime slime = (Slime)this.clone();
+            Prototype slime = this.clonePrototype();
             slime.initialize( dj.getRandomAdjacentReachableCell(this.getPosition()));
 
         }else{
@@ -30,7 +26,7 @@ public class Slime extends Monster{
     }
 
     @Override
-    public Monster clone(){
+    public Prototype clonePrototype(){
         return new Slime();
     }
 }

@@ -23,25 +23,25 @@ public class GameFacory{
     }
 
     public static Cell MakeEmptyCell(Donjon donjon, int x, int y){
-        Cell ec = (EmptyCell) prototypeEmptyCell.clone();
+        Cell ec = (EmptyCell) prototypeEmptyCell.cloneMaze();
         ec.initialize(donjon, x, y);
         return ec;
     }
 
     public static Cell MakeReachableCell(Donjon donjon, int x, int y){
-        Cell ec = (ReachableCell) prototypeReachableCell.clone();
+        Cell ec = (ReachableCell) prototypeReachableCell.cloneMaze();
         ec.initialize(donjon, x, y);
         return ec;
     }
 
     public static Item MakePotion(ReachableCell cell) {
-        Potion p = (Potion) prototypePotion.clone();
+        Potion p = (Potion) prototypePotion.clonePrototype();
         p.initialize(cell);
         return p;
     }
 
     public static Item MakeEther(ReachableCell cell){
-        Ether e = (Ether) prototypeEther.clone();
+        Ether e = (Ether) prototypeEther.clonePrototype();
         e.initialize(cell);
         return e;
     }

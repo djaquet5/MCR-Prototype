@@ -7,6 +7,7 @@ import entity.Character;
 public abstract class Item implements Prototype {
     private String nom;
     private String image;
+    private ReachableCell position;
 
     public Item(String nom, String image){
         this.nom = nom;
@@ -15,8 +16,12 @@ public abstract class Item implements Prototype {
 
     public abstract void heal(Character character);
 
+    public ReachableCell getPosition() {
+        return position;
+    }
+
     @Override
     public void initialize(ReachableCell cell) {
-        cell.addItem(this);
+        this.position = cell;
     }
 }

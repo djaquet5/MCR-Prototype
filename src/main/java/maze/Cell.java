@@ -40,5 +40,5 @@ public abstract class Cell implements PrototypeMaze {
     }
 
     @Override
-    public abstract Cell clone();
+    public abstract PrototypeMaze cloneMaze();
 }

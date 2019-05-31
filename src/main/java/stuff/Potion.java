@@ -1,7 +1,7 @@
 package stuff;
 
 import entity.Character;
-import maze.ReachableCell;
+import prototypal.Prototype;
 
 public class Potion extends Item {
 
@@ -14,7 +14,7 @@ public class Potion extends Item {
     }
 
     @Override
-    public Item clone(){
+    public Prototype clonePrototype(){
         return new Potion();
     }
 }

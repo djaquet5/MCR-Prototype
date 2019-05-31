@@ -1,5 +1,6 @@
 package entity;
 
+import controler.MapControler;
 import magic.Spell;
 import maze.ReachableCell;
 import prototypal.Prototype;
@@ -127,6 +128,10 @@ public abstract class Character implements Prototype {
 
     public ReachableCell getPosition(){ return position; }
 
+    public void setPosition(ReachableCell position) {
+        this.position = position;
+    }
+
     public void learnSpell(Spell spell) {
         if (spellSlots.contains(spell))
             System.out.println("Spell already known!");
@@ -178,7 +183,7 @@ public abstract class Character implements Prototype {
 
 
     public void initialize(ReachableCell cell) {
-        cell.addCharacter(this);
-        position = cell;
+        setPosition(cell);
+        MapControler.enterToGame(this);
     }
 }

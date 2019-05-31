@@ -15,11 +15,8 @@ public abstract class Monster extends Character {
 
     public void interactionDonjon(Donjon dj){
         ReachableCell rc = dj.getRandomAdjacentReachableCell(this.getPosition());
-        getPosition().removeCharacter(this);
-        initialize(rc);
+        setPosition(rc);
     }
-
-    public abstract Monster clone();
 
     public int getExpPoint(){
         return expPoint;

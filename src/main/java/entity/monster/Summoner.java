@@ -2,7 +2,7 @@ package entity.monster;
 
 import controler.MapControler;
 import maze.Donjon;
-import maze.ReachableCell;
+import prototypal.Prototype;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -17,19 +17,22 @@ public class Summoner extends Monster {
     public Summoner() {
         super(280, 200, 150, 250, 55, 235, "PATH", 90);
         monsters = new LinkedList<>();
-        monsters.add(new Slime());
+        monsters.add(new Poulpe());
+        monsters.add(new Calamar());
     }
 
     @Override
     public void interactionDonjon(Donjon dj){
         if(MapControler.getTurn() % 5 == 0){
             Random rand = new Random();
-            Monster monstre = monsters.get(rand.nextInt(monsters.size())).clone();
+            Prototype monstre = monsters.get(rand.nextInt(monsters.size())).clonePrototype();
+            monstre.initialize(dj.getRandomAdjacentReachableCell(this.getPosition()));
+            MapControler.enterToGame(monstre);
         }
     }
 
     @Override
-    public Monster clone(){
+    public Prototype clonePrototype(){
         return new Summoner();
     }
     
