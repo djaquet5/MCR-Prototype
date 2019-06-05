@@ -21,7 +21,7 @@ public abstract class GameCharacter implements Prototype {
     private int magic;
     private int magicDefence;
     private String displayImage;
-    private List<Spell> spellSlots;
+    protected List<Spell> spellSlots;
     private Map<Item, Integer> inventory;
     private ReachableCell position;
 

@@ -3,6 +3,7 @@ package controller;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import maze.Donjon;
+import maze.ReachableCell;
 import prototypal.Prototype;
 import stuff.Item;
 
@@ -15,31 +16,50 @@ public class MapController {
     private static LinkedList<Prototype> monsterAndStuff;
     private Hero hero;
 
+    public MapController(Hero hero, Donjon donjon){
+        this.hero = hero;
+        this.donjon = donjon;
+    }
+
     public static int getTurn(){
         return turn;
     }
 
     public void play(){
         while(true){
-            /**
-             * On bouge
-             */
-            /**
-             * Les monstres bougent
-             */
-            for(Prototype p : monsterAndStuff){
-                if(p instanceof Monster){
-                    ((Monster) p).interactionDonjon(donjon);
-                    if(hero.getPosition() == ((Monster) p).getPosition()){
-                        battle(p);
-                    }
-                }else if(p instanceof Item && hero.getPosition() == ((Item) p).getPosition()){
-                    hero.addToinventory((Item)p, 1);
-                    removeFromGame(p);
-                }
-            }
-            ++turn;
+
+
+
         }
+    }
+
+    public void move(ReachableCell cell){
+        /**
+         * On bouge
+         */
+        hero.setPosition(cell);
+
+        for(Prototype p : monsterAndStuff){
+            if(p instanceof Monster){
+                /**
+                 * Les monstres bougent
+                 */
+                ((Monster) p).interactionDonjon(donjon);
+                if(hero.getPosition() == ((Monster) p).getPosition()){
+                    /**
+                     * Si même case, combat
+                     */
+                    battle(p);
+                }
+            }else if(p instanceof Item && hero.getPosition() == ((Item) p).getPosition()){
+                /**
+                 * On ramasse les items sur la même case que nous
+                 */
+                hero.addToinventory((Item)p, 1);
+                removeFromGame(p);
+            }
+        }
+        ++turn;
     }
 
     public void battle(Prototype p){

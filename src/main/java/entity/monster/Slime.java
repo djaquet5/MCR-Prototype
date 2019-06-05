@@ -1,6 +1,7 @@
 package entity.monster;
 
 import controller.MapController;
+import magic.Spell;
 import maze.Donjon;
 import prototypal.Prototype;
 
@@ -8,6 +9,7 @@ import prototypal.Prototype;
 public class Slime extends Monster{
     public Slime(){
         super(60, 20, 40, 180, 20, 10, "PATH", 10);
+        spellSlots.add(new Spell("Acid Body", 40, 4));
     }
 
     /**
