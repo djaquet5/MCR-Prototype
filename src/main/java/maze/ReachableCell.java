@@ -17,4 +17,9 @@ public class ReachableCell extends Cell {
     public PrototypeMaze cloneMaze() {
         return new ReachableCell(this);
     }
+
+    @Override
+    public Boolean isReachable(){
+        return true;
+    }
 }

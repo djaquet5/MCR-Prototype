@@ -3,6 +3,10 @@ package entity.monster;
 import entity.GameCharacter;
 import maze.Donjon;
 import maze.ReachableCell;
+import prototypal.GameFacory;
+import stuff.Potion;
+
+import javax.swing.*;
 
 public abstract class Monster extends GameCharacter {
 

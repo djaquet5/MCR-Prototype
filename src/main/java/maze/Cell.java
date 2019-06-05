@@ -1,5 +1,6 @@
 package maze;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import prototypal.PrototypeMaze;
 
 import java.awt.*;
@@ -10,11 +11,13 @@ public abstract class Cell implements PrototypeMaze {
     private int posX;
     private int posY;
     private Color color;
+    private Boolean isDiscovered;
 
     Cell(Cell c) {
         this.posX = c.posX;
         this.posY = c.posY;
         this.color = c.color;
+        this.isDiscovered = false;
     }
 
     public Cell(Color color){
@@ -37,6 +40,14 @@ public abstract class Cell implements PrototypeMaze {
         this.donjon = donjon;
         this.posX = posX;
         this.posY = posY;
+    }
+
+    public void discover(){
+        this.isDiscovered = true;
+    }
+
+    public Boolean isReachable(){
+        return false;
     }
 
     @Override

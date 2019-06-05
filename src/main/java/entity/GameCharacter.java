@@ -22,7 +22,7 @@ public abstract class GameCharacter implements Prototype {
     private int magicDefence;
     private String displayImage;
     protected List<Spell> spellSlots;
-    private Map<Item, Integer> inventory;
+    protected Map<Item, Integer> inventory;
     private ReachableCell position;
 
     public GameCharacter() {

@@ -4,6 +4,8 @@ import controller.MapController;
 import magic.Spell;
 import maze.Donjon;
 import prototypal.Prototype;
+import stuff.Ether;
+import stuff.Potion;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -24,6 +26,8 @@ public class Summoner extends Monster {
         spellSlots.add(new Spell("Fire Whip", 66, 20));
         spellSlots.add(new Spell("Icy Wind", 30, 5));
         spellSlots.add(new Spell("Spectral Inferno", 102, 30));
+        inventory.put(new Ether(), 2);
+        inventory.put(new Potion(), 1);
     }
 
     @Override
