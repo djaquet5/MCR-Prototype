@@ -182,6 +182,9 @@ public abstract class GameCharacter implements Prototype {
         return damage;
     }
 
+    public boolean hasInInventory(Item item) {
+        return inventory.containsKey(item) && inventory.get(item) > 0;
+    }
 
     public void initialize(ReachableCell cell) {
         setPosition(cell);
