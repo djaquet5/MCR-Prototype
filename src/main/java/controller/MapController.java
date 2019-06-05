@@ -2,7 +2,7 @@ package controller;
 
 import entity.hero.Hero;
 import entity.monster.Monster;
-import maze.Donjon;
+import maze.Dungeon;
 import prototypal.Prototype;
 import stuff.Item;
 
@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class MapController {
     private static int turn = 1;
-    private Donjon donjon;
+    private Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
     private Hero hero;
@@ -29,7 +29,7 @@ public class MapController {
              */
             for(Prototype p : monsterAndStuff){
                 if(p instanceof Monster){
-                    ((Monster) p).interactionDonjon(donjon);
+                    ((Monster) p).interactionDonjon(dungeon);
                     if(hero.getPosition() == ((Monster) p).getPosition()){
                         battle(p);
                     }

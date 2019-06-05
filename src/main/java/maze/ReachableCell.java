@@ -1,5 +1,6 @@
 package maze;
 
+import display.GameDisplayer;
 import prototypal.PrototypeMaze;
 
 import java.awt.*;

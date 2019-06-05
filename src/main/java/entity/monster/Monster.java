@@ -1,7 +1,7 @@
 package entity.monster;
 
 import entity.Character;
-import maze.Donjon;
+import maze.Dungeon;
 import maze.ReachableCell;
 
 public abstract class Monster extends Character {
@@ -13,7 +13,7 @@ public abstract class Monster extends Character {
         this.expPoint = expPoint;
     }
 
-    public void interactionDonjon(Donjon dj){
+    public void interactionDonjon(Dungeon dj){
         ReachableCell rc = dj.getRandomAdjacentReachableCell(this.getPosition());
         setPosition(rc);
     }
