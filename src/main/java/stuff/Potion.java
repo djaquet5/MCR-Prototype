@@ -1,11 +1,12 @@
 package stuff;
 
 import entity.Character;
+import prototypal.Prototype;
 
 public class Potion extends Item {
 
     public Potion(){
-        super("Potion", "PATH");
+        super("Potion", "./icons/healthPotion.png");
     }
 
     public void heal(Character character){
@@ -13,7 +14,7 @@ public class Potion extends Item {
     }
 
     @Override
-    public Item clone(){
+    public Prototype clonePrototype(){
         return new Potion();
     }
 }

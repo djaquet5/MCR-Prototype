@@ -40,7 +40,7 @@ public abstract class Cell implements PrototypeMaze {
         this.posY = posY;
     }
 
+    @Override
+    public abstract PrototypeMaze cloneMaze();
     public abstract void draw(Graphics2D g, GameDisplayer observer);
-
-    public abstract Cell clone();
 }

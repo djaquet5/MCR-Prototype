@@ -2,6 +2,8 @@ package maze;
 
 import display.GameDisplayer;
 
+import prototypal.PrototypeMaze;
+
 import java.awt.*;
 
 public class EmptyCell extends Cell {
@@ -20,7 +22,7 @@ public class EmptyCell extends Cell {
     }
 
     @Override
-    public Cell clone() {
+    public PrototypeMaze cloneMaze() {
         return new EmptyCell(this);
     }
 }

@@ -1,6 +1,9 @@
 package entity;
 
+import controller.MapController;
 import magic.Spell;
+import maze.ReachableCell;
+import prototypal.Prototype;
 import stuff.Item;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Character {
+public abstract class Character implements Prototype {
     private int hp;
     private int maxHp;
     private int mp;
@@ -20,6 +23,7 @@ public abstract class Character {
     private String displayImage;
     private List<Spell> spellSlots;
     private Map<Item, Integer> inventory;
+    private ReachableCell position;
 
     public Character() {
 
@@ -122,6 +126,12 @@ public abstract class Character {
         return spellSlots;
     }
 
+    public ReachableCell getPosition(){ return position; }
+
+    public void setPosition(ReachableCell position) {
+        this.position = position;
+    }
+
     public void learnSpell(Spell spell) {
         if (spellSlots.contains(spell))
             System.out.println("Spell already known!");
@@ -169,5 +179,11 @@ public abstract class Character {
             this.modifyMp(spell.getMpCost() * -1);
         }
         return true;
+    }
+
+
+    public void initialize(ReachableCell cell) {
+        setPosition(cell);
+        MapController.enterToGame(this);
     }
 }

@@ -1,5 +1,8 @@
 package maze;
 
+import prototypal.Prototype;
+import prototypal.PrototypeMaze;
+
 public class EndCell extends ReachableCell {
 
     private EndCell(EndCell ec) {
@@ -11,7 +14,7 @@ public class EndCell extends ReachableCell {
     }
 
     @Override
-    public Cell clone() {
+    public PrototypeMaze cloneMaze() {
         return new EndCell(this);
     }
 }
