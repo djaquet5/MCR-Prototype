@@ -1,16 +1,16 @@
 package maze;
 
-import prototypal.GameFacory;
+import prototypal.GameFactory;
 
-public class Donjon {
+public class Dungeon {
     private Cell[][] cellules;
 
-    public Donjon(int x, int y){
+    public Dungeon(int x, int y){
         cellules = new Cell[x][y];
         for(int i = 0; i < x; ++i){
             for(int j = 0; j < y; ++j){
 
-                cellules[x][y] = GameFacory.MakeEmptyCell(this, x, y);
+                cellules[x][y] = GameFactory.MakeEmptyCell(this, x, y);
             }
         }
     }

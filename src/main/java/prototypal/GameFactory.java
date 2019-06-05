@@ -3,7 +3,7 @@ package prototypal;
 import maze.*;
 import stuff.*;
 
-public class GameFacory{
+public class GameFactory {
     //Cell
     private static EmptyCell prototypeEmptyCell;
 
@@ -13,16 +13,16 @@ public class GameFacory{
     private static Ether prototypeEther;
 
 
-    public GameFacory() {
+    public GameFactory() {
         prototypeEmptyCell = new EmptyCell();
 
         prototypePotion = new Potion();
         prototypeEther = new Ether();
     }
 
-    public static Cell MakeEmptyCell(Donjon donjon, int x, int y){
+    public static Cell MakeEmptyCell(Dungeon dungeon, int x, int y){
         Cell ec = (EmptyCell) prototypeEmptyCell.clone();
-        ec.initialize(donjon, x, y);
+        ec.initialize(dungeon, x, y);
         return ec;
     }
 

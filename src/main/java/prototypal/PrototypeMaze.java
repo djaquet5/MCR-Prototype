@@ -1,7 +1,7 @@
 package prototypal;
 
-import maze.Donjon;
+import maze.Dungeon;
 
 public interface PrototypeMaze extends Cloneable {
-    public void initialize(Donjon donjon, int posX, int posY);
+    public void initialize(Dungeon dungeon, int posX, int posY);
 }

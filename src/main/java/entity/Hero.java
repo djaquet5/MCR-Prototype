@@ -1,7 +1,6 @@
-package entity.Hero;
+package entity;
 
-import entity.Character;
-
+// TODO: Hero Spirit
 public abstract class Hero extends Character {
     private int lvl;
     private int exp;

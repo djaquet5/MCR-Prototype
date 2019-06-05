@@ -1,12 +1,13 @@
 package maze;
 
+import display.GameDisplayer;
 import prototypal.PrototypeMaze;
 
 import java.awt.*;
 
 public abstract class Cell implements PrototypeMaze {
 
-    private Donjon donjon;
+    private Dungeon dungeon;
     private int posX;
     private int posY;
     private Color color;
@@ -33,11 +34,13 @@ public abstract class Cell implements PrototypeMaze {
         return color;
     }
 
-    public void initialize(Donjon donjon, int posX, int posY) {
-        this.donjon = donjon;
+    public void initialize(Dungeon dungeon, int posX, int posY) {
+        this.dungeon = dungeon;
         this.posX = posX;
         this.posY = posY;
     }
+
+    public abstract void draw(Graphics2D g, GameDisplayer observer);
 
     public abstract Cell clone();
 }
