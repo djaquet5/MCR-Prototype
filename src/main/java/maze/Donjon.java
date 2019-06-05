@@ -19,7 +19,13 @@ public class Donjon {
     }
 
     public boolean isReachable(int x, int y){
-        return cellules[x][y] instanceof ReachableCell;
+        return cellules[x][y].isReachable();
+    }
+
+    public Cell getCell(int x, int y){
+        if(x < 0) x = 0;
+        if(y < 0) y = 0;
+        return cellules[x][y];
     }
 
     public ReachableCell getRandomAdjacentReachableCell(ReachableCell rc){

@@ -38,6 +38,14 @@ public class MapController {
          * On bouge
          */
         hero.setPosition(cell);
+        /**
+         * On découvre les cases autour de nous
+         */
+        for(int x = -1; x <= 1; ++x){
+            for(int y = -1; y <= 1; ++y){
+                donjon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+            }
+        }
 
         for(Prototype p : monsterAndStuff){
             if(p instanceof Monster){
@@ -67,6 +75,7 @@ public class MapController {
          * On combat
          */
         if(((Monster) p).isDead()){
+            hero.gainExp(((Monster) p).getExpPoint());
             removeFromGame(p);
         }
         if(hero.isDead()){
