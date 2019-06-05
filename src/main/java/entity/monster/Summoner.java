@@ -1,6 +1,6 @@
 package entity.monster;
 
-import controler.MapControler;
+import controller.MapController;
 import maze.Donjon;
 import prototypal.Prototype;
 
@@ -23,11 +23,11 @@ public class Summoner extends Monster {
 
     @Override
     public void interactionDonjon(Donjon dj){
-        if(MapControler.getTurn() % 5 == 0){
+        if(MapController.getTurn() % 5 == 0){
             Random rand = new Random();
             Prototype monstre = monsters.get(rand.nextInt(monsters.size())).clonePrototype();
             monstre.initialize(dj.getRandomAdjacentReachableCell(this.getPosition()));
-            MapControler.enterToGame(monstre);
+            MapController.enterToGame(monstre);
         }
     }
 

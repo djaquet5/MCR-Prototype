@@ -1,6 +1,6 @@
 package entity.monster;
 
-import controler.MapControler;
+import controller.MapController;
 import maze.Donjon;
 import prototypal.Prototype;
 
@@ -16,7 +16,7 @@ public class Slime extends Monster{
      */
     @Override
     public void interactionDonjon(Donjon dj){
-        if(MapControler.getTurn() % 13 == 0){
+        if(MapController.getTurn() % 13 == 0){
             Prototype slime = this.clonePrototype();
             slime.initialize( dj.getRandomAdjacentReachableCell(this.getPosition()));
 

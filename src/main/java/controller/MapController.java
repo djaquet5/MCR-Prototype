@@ -1,4 +1,4 @@
-package controler;
+package controller;
 
 import entity.hero.Hero;
 import entity.monster.Monster;
@@ -8,7 +8,7 @@ import stuff.Item;
 
 import java.util.LinkedList;
 
-public class MapControler {
+public class MapController {
     private static int turn = 1;
     private Donjon donjon;
 

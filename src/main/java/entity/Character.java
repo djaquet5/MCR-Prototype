@@ -1,6 +1,6 @@
 package entity;
 
-import controler.MapControler;
+import controller.MapController;
 import magic.Spell;
 import maze.ReachableCell;
 import prototypal.Prototype;
@@ -184,6 +184,6 @@ public abstract class Character implements Prototype {
 
     public void initialize(ReachableCell cell) {
         setPosition(cell);
-        MapControler.enterToGame(this);
+        MapController.enterToGame(this);
     }
 }
