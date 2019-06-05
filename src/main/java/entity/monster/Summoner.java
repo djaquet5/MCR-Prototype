@@ -17,8 +17,8 @@ public class Summoner extends Monster {
     public Summoner() {
         super(280, 200, 150, 250, 55, 235, "PATH", 90);
         monsters = new LinkedList<>();
-        monsters.add(new Poulpe());
-        monsters.add(new Calamar());
+        monsters.add(new Octopus());
+        monsters.add(new Squid());
     }
 
     @Override

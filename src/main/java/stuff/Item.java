@@ -2,7 +2,7 @@ package stuff;
 
 import maze.ReachableCell;
 import prototypal.Prototype;
-import entity.Character;
+import entity.GameCharacter;
 
 public abstract class Item implements Prototype {
     private String nom;
@@ -14,7 +14,7 @@ public abstract class Item implements Prototype {
         this.image = image;
     }
 
-    public abstract void heal(Character character);
+    public abstract void use(GameCharacter gameCharacter);
 
     public ReachableCell getPosition() {
         return position;

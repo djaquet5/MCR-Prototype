@@ -1,10 +1,10 @@
 package entity.monster;
 
-import entity.Character;
+import entity.GameCharacter;
 import maze.Donjon;
 import maze.ReachableCell;
 
-public abstract class Monster extends Character {
+public abstract class Monster extends GameCharacter {
 
     int expPoint;
 
