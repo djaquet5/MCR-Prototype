@@ -1,6 +1,7 @@
 package entity.monster;
 
 import controller.MapController;
+import magic.Spell;
 import maze.Dungeon;
 import prototypal.Prototype;
 
@@ -19,6 +20,10 @@ public class Summoner extends Monster {
         monsters = new LinkedList<>();
         monsters.add(new Poulpe());
         monsters.add(new Calamar());
+        spellSlots.add(new Spell("Thunder Shock", 88, 25));
+        spellSlots.add(new Spell("Fire Whip", 66, 20));
+        spellSlots.add(new Spell("Icy Wind", 30, 5));
+        spellSlots.add(new Spell("Spectral Inferno", 102, 30));
     }
 
     @Override

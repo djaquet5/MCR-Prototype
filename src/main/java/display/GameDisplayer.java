@@ -14,7 +14,6 @@ public class GameDisplayer extends JPanel implements ActionListener {
     private final static int MAZE_DIMENSION = 10;
     private final static int MAZE_SIZE = 1000;
 
-    public final static Image GRASS = new ImageIcon("src/textures/grass.jpg").getImage();
     public final static Image STONE = new ImageIcon("src/textures/stone.jpg").getImage();
     public final static Image DIRT = new ImageIcon("src/textures/dirt.png").getImage();
 
@@ -23,7 +22,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
         loadImages();
         setBackground(Color.black);
         setPreferredSize(new Dimension(MAZE_SIZE, MAZE_SIZE));
-        Dungeon dungeon = new Dungeon(MAZE_DIMENSION, MAZE_DIMENSION);
+        //Dungeon dungeon = new Dungeon(MAZE_DIMENSION, MAZE_DIMENSION);
     }
 
     private void loadImages() {

@@ -3,9 +3,12 @@ package maze;
 import display.GameDisplayer;
 import prototypal.PrototypeMaze;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class ReachableCell extends Cell {
+    private final static Image GRASS = new ImageIcon("src/textures/grass.jpg").getImage();
+
     public ReachableCell(ReachableCell rc) {
         super(rc);
     }
@@ -16,7 +19,7 @@ public class ReachableCell extends Cell {
 
     @Override
     public void draw(Graphics2D g, GameDisplayer observer) {
-        g.drawImage(GameDisplayer.STONE, 5 + getPosX() * 100, 5 + getPosY() * 100, 90, 90, observer);
+        g.drawImage(GRASS, 5 + getPosX() * 100, 5 + getPosY() * 100, 90, 90, observer);
     }
 
     @Override
