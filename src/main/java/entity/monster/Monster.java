@@ -3,14 +3,10 @@ package entity.monster;
 import entity.GameCharacter;
 import maze.Donjon;
 import maze.ReachableCell;
-import prototypal.GameFacory;
-import stuff.Potion;
-
-import javax.swing.*;
 
 public abstract class Monster extends GameCharacter {
 
-    int expPoint;
+    private int expPoint;
 
     public Monster(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage, int expPoint) {
         super(hp, mp, attack, defence, magic, magicDefence, displayImage);

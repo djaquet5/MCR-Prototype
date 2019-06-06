@@ -25,10 +25,6 @@ public abstract class GameCharacter implements Prototype {
     protected Map<Item, Integer> inventory;
     private ReachableCell position;
 
-    public GameCharacter() {
-
-    }
-
     public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;
         this.mp = this.maxMp = mp;
