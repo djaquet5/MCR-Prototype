@@ -6,28 +6,26 @@ import stuff.Item;
 
 public class BattleController {
 
-    public void attack(GameCharacter attacker, GameCharacter target) {
-        System.out.println(attacker.attack(target) + " damage was inflicted !");
+    public static String attack(GameCharacter attacker, GameCharacter target) {
+        return attacker.attack(target) + " damage was inflicted !";
     }
 
-    public void castSpell(GameCharacter speller, Spell spell, GameCharacter target) {
+    public static String castSpell(GameCharacter speller, Spell spell, GameCharacter target) {
         int damage = speller.castMagic(target, spell);
 
         if(damage == -1) {
-            System.out.println(spell + " not casted !");
-            return;
+            return spell + " not casted !";
         }
 
-        System.out.println(damage + " damage was inflicted !");
+        return damage + " damage was inflicted !";
     }
 
-    public void useItem(GameCharacter user, Item item) {
+    public static String useItem(GameCharacter user, Item item) {
         if(!user.hasInInventory(item)) {
-            System.out.println(item + " is not in the inventory list !");
-            return;
+            return item + " is not in the inventory list !";
         }
 
         item.use(user);
-        System.out.println(item + " used !");
+        return item + " used !";
     }
 }

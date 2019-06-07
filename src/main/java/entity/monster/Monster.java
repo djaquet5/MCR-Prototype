@@ -1,8 +1,12 @@
 package entity.monster;
 
 import entity.GameCharacter;
+import entity.hero.Hero;
+import magic.Spell;
 import maze.Donjon;
 import maze.ReachableCell;
+
+import java.util.Random;
 
 public abstract class Monster extends GameCharacter {
 
@@ -18,8 +22,15 @@ public abstract class Monster extends GameCharacter {
         setPosition(rc);
     }
 
+    public abstract String randomMove(Hero hero);
+
     public int getExpPoint(){
         return expPoint;
+    }
+
+    protected Spell getRandomSpell(){
+        Random rand = new Random();
+        return spellSlots.get(rand.nextInt(spellSlots.size()));
     }
 
 }
