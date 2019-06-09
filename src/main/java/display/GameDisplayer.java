@@ -1,8 +1,7 @@
 package display;
 
-import entity.Character;
-import entity.monster.Monster;
-import entity.monster.Slime;
+import entity.GameCharacter;
+import entity.hero.Kagami;
 import maze.Cell;
 import maze.Dungeon;
 
@@ -31,7 +30,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
     private Image HERO;
 
-    private Monster testMonster;
+    private Kagami testKagami;
 
     public GameDisplayer() {
         init();
@@ -57,8 +56,8 @@ public class GameDisplayer extends JPanel implements ActionListener {
         this.startCell = dungeon.getCell(0, 0);
 
         // TODO: to remove
-        testMonster = new Slime();
-        testMonster.setPosition(startCell);
+        testKagami = new Kagami();
+        testKagami.setPosition(startCell);
     }
 
     private void loadImages() {
@@ -78,8 +77,8 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         drawDungeon(g2d);
 
-        g2d.drawImage(HERO, cellOffset + testMonster.getPosition().getPosX() * cellSize,
-                cellOffset + testMonster.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
+        g2d.drawImage(HERO, cellOffset + testKagami.getPosition().getPosX() * cellSize,
+                cellOffset + testKagami.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
 
     }
 
@@ -114,7 +113,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
             if (key == KeyEvent.VK_S) {
                 System.out.println("Moved down");
-                moveHeroDown(testMonster);
+                moveHeroDown(testKagami);
             }
         }
 
@@ -124,7 +123,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
             if (key == KeyEvent.VK_S) {
                 System.out.println("Moved down");
-                moveHeroDown(testMonster);
+                moveHeroDown(testKagami);
             }
         }
 
@@ -134,12 +133,12 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
             if (key == KeyEvent.VK_S) {
                 System.out.println("Moved down");
-                moveHeroDown(testMonster);
+                moveHeroDown(testKagami);
             }
         }
     }
 
-    private void moveHeroDown(Character hero) {
+    private void moveHeroDown(GameCharacter hero) {
         Cell cell = hero.getPosition();
         Cell nextCell = dungeon.getCell(cell.getPosX(), cell.getPosY() + 1);
         if(nextCell.isReachable()) {

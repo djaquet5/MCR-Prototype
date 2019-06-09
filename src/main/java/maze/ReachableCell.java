@@ -22,8 +22,4 @@ public class ReachableCell extends Cell {
         return new ReachableCell(this);
     }
 
-    @Override
-    public Boolean isReachable(){
-        return true;
-    }
 }

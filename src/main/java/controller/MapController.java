@@ -52,7 +52,7 @@ public class MapController implements KeyListener {
          */
         for(int x = -1; x <= 1; ++x){
             for(int y = -1; y <= 1; ++y){
-                donjon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+                dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
             }
         }
 
