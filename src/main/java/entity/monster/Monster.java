@@ -3,8 +3,8 @@ package entity.monster;
 import entity.GameCharacter;
 import entity.hero.Hero;
 import magic.Spell;
-import maze.Donjon;
-import maze.ReachableCell;
+import maze.Cell;
+import maze.Dungeon;
 
 import java.util.Random;
 
@@ -17,8 +17,8 @@ public abstract class Monster extends GameCharacter {
         this.expPoint = expPoint;
     }
 
-    public void interactionDonjon(Donjon dj){
-        ReachableCell rc = dj.getRandomAdjacentReachableCell(this.getPosition());
+    public void interactionDonjon(Dungeon dj){
+        Cell rc = dj.getRandomAdjacentReachableCell(getPosition());
         setPosition(rc);
     }
 

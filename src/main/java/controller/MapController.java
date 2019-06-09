@@ -1,24 +1,33 @@
 package controller;
 
+import display.GameDisplayer;
 import entity.hero.Hero;
 import entity.monster.Monster;
-import maze.Donjon;
+import entity.monster.Slime;
+import maze.Dungeon;
 import maze.ReachableCell;
 import prototypal.Prototype;
 import stuff.Item;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 
-public class MapController {
+public class MapController implements KeyListener {
     private static int turn = 1;
-    private Donjon donjon;
+    private Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
     private Hero hero;
 
-    public MapController(Hero hero, Donjon donjon){
-        this.hero = hero;
-        this.donjon = donjon;
+    private GameDisplayer gameDisplayer;
+
+    private Monster testMonster;
+
+    public MapController(){
+        // TODO: initialize hero and dungeon
+        this.gameDisplayer = new GameDisplayer();
+        this.testMonster = new Slime();
     }
 
     public static int getTurn(){
@@ -43,7 +52,7 @@ public class MapController {
          */
         for(int x = -1; x <= 1; ++x){
             for(int y = -1; y <= 1; ++y){
-                donjon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+                dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
             }
         }
 
@@ -52,7 +61,7 @@ public class MapController {
                 /**
                  * Les monstres bougent
                  */
-                ((Monster) p).interactionDonjon(donjon);
+                ((Monster) p).interactionDonjon(dungeon);
                 if(hero.getPosition() == ((Monster) p).getPosition()){
                     /**
                      * Si même case, combat
@@ -91,5 +100,24 @@ public class MapController {
 
     public static void removeFromGame(Prototype p){
         monsterAndStuff.remove(p);
+    }
+
+    public GameDisplayer getGameDisplayer() {
+        return gameDisplayer;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+
     }
 }

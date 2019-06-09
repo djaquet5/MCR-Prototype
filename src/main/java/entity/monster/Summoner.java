@@ -4,7 +4,7 @@ import controller.BattleController;
 import controller.MapController;
 import entity.hero.Hero;
 import magic.Spell;
-import maze.Donjon;
+import maze.Dungeon;
 import prototypal.Prototype;
 import stuff.Ether;
 import stuff.Item;
@@ -59,7 +59,7 @@ public class Summoner extends Monster {
     }
 
     @Override
-    public void interactionDonjon(Donjon dj){
+    public void interactionDonjon(Dungeon dj){
         if(MapController.getTurn() % 5 == 0){
             Random rand = new Random();
             Prototype monstre = monsters.get(rand.nextInt(monsters.size())).clonePrototype();

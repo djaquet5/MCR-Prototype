@@ -1,6 +1,6 @@
 import controller.MapController;
 import entity.hero.*;
-import maze.Donjon;
+import maze.Dungeon;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -17,7 +17,7 @@ public class MainMenu {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Magus(), new Donjon(50, 50));
+                //new MapController(new Magus(), new Dungeon(50, 50));
             }
 
             @Override
@@ -37,7 +37,7 @@ public class MainMenu {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Warrior(), new Donjon(50, 50));
+                //new MapController(new Warrior(), new Dungeon(50, 50));
             }
 
             @Override
@@ -57,7 +57,7 @@ public class MainMenu {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Kagami(), new Donjon(50, 50));
+                //new MapController(new Kagami(), new Dungeon(50, 50));
             }
 
             @Override

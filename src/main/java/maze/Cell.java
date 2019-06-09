@@ -1,27 +1,22 @@
 package maze;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import prototypal.PrototypeMaze;
-
-import java.awt.*;
 
 public abstract class Cell implements PrototypeMaze {
 
-    private Donjon donjon;
     private int posX;
     private int posY;
-    private Color color;
-    private Boolean isDiscovered;
+    private boolean isDiscovered;
 
     Cell(Cell c) {
         this.posX = c.posX;
         this.posY = c.posY;
-        this.color = c.color;
         this.isDiscovered = false;
     }
 
-    public Cell(Color color){
-        this.color = color;
+    public Cell(){
+        this.posX = 0;
+        this.posY = 0;
     }
 
     public int getPosX() {
@@ -32,12 +27,7 @@ public abstract class Cell implements PrototypeMaze {
         return posY;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void initialize(Donjon donjon, int posX, int posY) {
-        this.donjon = donjon;
+    public void initialize(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
@@ -46,7 +36,7 @@ public abstract class Cell implements PrototypeMaze {
         this.isDiscovered = true;
     }
 
-    public Boolean isReachable(){
+    public boolean isReachable(){
         return false;
     }
 

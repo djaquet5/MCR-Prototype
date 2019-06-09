@@ -2,15 +2,19 @@ package maze;
 
 import prototypal.PrototypeMaze;
 
-import java.awt.*;
-
 public class ReachableCell extends Cell {
+
     public ReachableCell(ReachableCell rc) {
         super(rc);
     }
 
     public ReachableCell(){
-        super(Color.WHITE);
+        super();
+    }
+
+    @Override
+    public boolean isReachable() {
+        return true;
     }
 
     @Override
@@ -18,8 +22,4 @@ public class ReachableCell extends Cell {
         return new ReachableCell(this);
     }
 
-    @Override
-    public Boolean isReachable(){
-        return true;
-    }
 }

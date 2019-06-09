@@ -4,7 +4,7 @@ import controller.BattleController;
 import controller.MapController;
 import entity.hero.Hero;
 import magic.Spell;
-import maze.Donjon;
+import maze.Dungeon;
 import prototypal.Prototype;
 import stuff.Ether;
 import stuff.Item;
@@ -28,7 +28,7 @@ public class Slime extends Monster{
      * @param dj Le donjon en question
      */
     @Override
-    public void interactionDonjon(Donjon dj){
+    public void interactionDonjon(Dungeon dj){
         if(MapController.getTurn() % 13 == 0){
             Prototype slime = this.clonePrototype();
             slime.initialize( dj.getRandomAdjacentReachableCell(this.getPosition()));

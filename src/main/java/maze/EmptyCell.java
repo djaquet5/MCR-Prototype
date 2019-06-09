@@ -2,8 +2,6 @@ package maze;
 
 import prototypal.PrototypeMaze;
 
-import java.awt.*;
-
 public class EmptyCell extends Cell {
 
     private EmptyCell(EmptyCell rc) {
@@ -11,7 +9,7 @@ public class EmptyCell extends Cell {
     }
 
     public EmptyCell(){
-        super(Color.BLACK);
+        super();
     }
 
     @Override

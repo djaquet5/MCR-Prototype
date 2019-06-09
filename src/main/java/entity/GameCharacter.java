@@ -2,7 +2,7 @@ package entity;
 
 import controller.MapController;
 import magic.Spell;
-import maze.ReachableCell;
+import maze.Cell;
 import prototypal.Prototype;
 import stuff.Item;
 
@@ -23,7 +23,7 @@ public abstract class GameCharacter implements Prototype {
     private String displayImage;
     protected List<Spell> spellSlots;
     protected Map<Item, Integer> inventory;
-    private ReachableCell position;
+    private Cell position;
 
     public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;
@@ -122,9 +122,9 @@ public abstract class GameCharacter implements Prototype {
         return spellSlots;
     }
 
-    public ReachableCell getPosition(){ return position; }
+    public Cell getPosition(){ return position; }
 
-    public void setPosition(ReachableCell position) {
+    public void setPosition(Cell position) {
         this.position = position;
     }
 
@@ -182,7 +182,7 @@ public abstract class GameCharacter implements Prototype {
         return inventory.containsKey(item) && inventory.get(item) > 0;
     }
 
-    public void initialize(ReachableCell cell) {
+    public void initialize(Cell cell) {
         setPosition(cell);
         MapController.enterToGame(this);
     }
