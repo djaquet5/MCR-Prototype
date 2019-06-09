@@ -1,8 +1,8 @@
 package entity.hero;
 
-import entity.Character;
+import entity.GameCharacter;
 
-public abstract class Hero extends Character {
+public abstract class Hero extends GameCharacter {
     private int lvl;
     private int exp;
     private final int lvlcap;

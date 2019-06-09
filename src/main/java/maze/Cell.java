@@ -6,10 +6,12 @@ public abstract class Cell implements PrototypeMaze {
 
     private int posX;
     private int posY;
+    private boolean isDiscovered;
 
     Cell(Cell c) {
         this.posX = c.posX;
         this.posY = c.posY;
+        this.isDiscovered = false;
     }
 
     public Cell(){
@@ -30,7 +32,11 @@ public abstract class Cell implements PrototypeMaze {
         this.posY = posY;
     }
 
-    public boolean isReachable() {
+    public void discover(){
+        this.isDiscovered = true;
+    }
+
+    public boolean isReachable(){
         return false;
     }
 

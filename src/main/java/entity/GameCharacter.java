@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Character implements Prototype {
+public abstract class GameCharacter implements Prototype {
     private int hp;
     private int maxHp;
     private int mp;
@@ -25,11 +25,7 @@ public abstract class Character implements Prototype {
     private Map<Item, Integer> inventory;
     private Cell position;
 
-    public Character() {
-
-    }
-
-    public Character(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
+    public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
         this.hp = this.maxHp = hp;
         this.mp = this.maxMp = mp;
         this.attack = attack;
@@ -154,33 +150,37 @@ public abstract class Character implements Prototype {
     public void useItem(Item item) {
         if (inventory.containsKey(item)) {
             inventory.put(item, inventory.get(item) - 1);
-            item.heal(this);
+            item.use(this);
             if (inventory.get(item) == 0) {
                 inventory.remove(item);
             }
         }
     }
 
-    public int attack(Character c){
+    public int attack(GameCharacter c){
         int damage = Math.max(this.attack + (int)(Math.random() * 13) - c.getDefence(), 1);
         c.modifyHp(damage * -1);
         return damage;
     }
 
-    public boolean castMagic(List<Character> targets, Spell spell){
+    public int castMagic(GameCharacter target, Spell spell){
         if(this.mp < spell.getMpCost()){
             System.out.println("Not enough Mana!");
-            return false;
+            return -1;
         }
-        for (Character target : targets) {
-            int damage = Math.max((int)Math.floor(this.magic * spell.getPower() / 100) +
+
+        int damage = Math.max((int)Math.floor(this.magic * spell.getPower() / 100) +
                     (int)(Math.random() * 13) - target.getMagicDefence(), 1);
-            target.modifyHp(damage * -1);
-            this.modifyMp(spell.getMpCost() * -1);
-        }
-        return true;
+
+        target.modifyHp(damage * -1);
+        this.modifyMp(spell.getMpCost() * -1);
+
+        return damage;
     }
 
+    public boolean hasInInventory(Item item) {
+        return inventory.containsKey(item) && inventory.get(item) > 0;
+    }
 
     public void initialize(Cell cell) {
         setPosition(cell);

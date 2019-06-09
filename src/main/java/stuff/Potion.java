@@ -1,6 +1,6 @@
 package stuff;
 
-import entity.Character;
+import entity.GameCharacter;
 import prototypal.Prototype;
 
 public class Potion extends Item {
@@ -9,8 +9,9 @@ public class Potion extends Item {
         super("Potion", "./icons/healthPotion.png");
     }
 
-    public void heal(Character character){
-        character.setHp((int) (character.getHp() * 0.5));
+    @Override
+    public void use(GameCharacter gameCharacter){
+        gameCharacter.setHp((int) (gameCharacter.getHp() * 0.5));
     }
 
     @Override
