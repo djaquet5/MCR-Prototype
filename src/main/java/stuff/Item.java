@@ -1,13 +1,13 @@
 package stuff;
 
-import maze.ReachableCell;
+import maze.Cell;
 import prototypal.Prototype;
 import entity.Character;
 
 public abstract class Item implements Prototype {
     private String nom;
     private String image;
-    private ReachableCell position;
+    private Cell position;
 
     public Item(String nom, String image){
         this.nom = nom;
@@ -16,12 +16,12 @@ public abstract class Item implements Prototype {
 
     public abstract void heal(Character character);
 
-    public ReachableCell getPosition() {
+    public Cell getPosition() {
         return position;
     }
 
     @Override
-    public void initialize(ReachableCell cell) {
+    public void initialize(Cell cell) {
         this.position = cell;
     }
 }

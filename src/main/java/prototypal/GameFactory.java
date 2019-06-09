@@ -5,33 +5,29 @@ import stuff.*;
 
 public class GameFactory {
     //Cell
-    private static EmptyCell prototypeEmptyCell;
-    private static ReachableCell prototypeReachableCell;
+    private final static EmptyCell prototypeEmptyCell = new EmptyCell();;
+    private final static ReachableCell prototypeReachableCell = new ReachableCell();
 
 
     //Item
-    private static Potion prototypePotion;
-    private static Ether prototypeEther;
+    private final static Potion prototypePotion = new Potion();
+    private final static Ether prototypeEther = new Ether();
 
 
     public GameFactory() {
-        prototypeEmptyCell = new EmptyCell();
-        prototypeReachableCell = new ReachableCell();
 
-        prototypePotion = new Potion();
-        prototypeEther = new Ether();
     }
 
-    public static Cell MakeEmptyCell(Dungeon dungeon, int x, int y){
-        Cell ec = (EmptyCell) prototypeEmptyCell.cloneMaze();
-        ec.initialize(dungeon, x, y);
-        return ec;
+    public static Cell MakeEmptyCell(int x, int y){
+        Cell emptyCell = (EmptyCell) prototypeEmptyCell.cloneMaze();
+        emptyCell.initialize(x, y);
+        return emptyCell;
     }
 
-    public static Cell MakeReachableCell(Dungeon dungeon, int x, int y){
-        Cell ec = (ReachableCell) prototypeReachableCell.cloneMaze();
-        ec.initialize(dungeon, x, y);
-        return ec;
+    public static Cell MakeReachableCell(int x, int y){
+        Cell reachableCell = (ReachableCell) prototypeReachableCell.cloneMaze();
+        reachableCell.initialize(x, y);
+        return reachableCell;
     }
 
     public static Item MakePotion(ReachableCell cell) {

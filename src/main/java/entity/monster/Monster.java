@@ -1,8 +1,8 @@
 package entity.monster;
 
 import entity.Character;
+import maze.Cell;
 import maze.Dungeon;
-import maze.ReachableCell;
 
 public abstract class Monster extends Character {
 
@@ -14,7 +14,7 @@ public abstract class Monster extends Character {
     }
 
     public void interactionDonjon(Dungeon dj){
-        ReachableCell rc = dj.getRandomAdjacentReachableCell(this.getPosition());
+        Cell rc = dj.getRandomAdjacentReachableCell(getPosition());
         setPosition(rc);
     }
 

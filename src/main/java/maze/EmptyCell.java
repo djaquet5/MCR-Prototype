@@ -1,10 +1,6 @@
 package maze;
 
-import display.GameDisplayer;
-
 import prototypal.PrototypeMaze;
-
-import java.awt.*;
 
 public class EmptyCell extends Cell {
 
@@ -13,12 +9,7 @@ public class EmptyCell extends Cell {
     }
 
     public EmptyCell(){
-        super(Color.BLACK);
-    }
-
-    @Override
-    public void draw(Graphics2D g, GameDisplayer observer) {
-
+        super();
     }
 
     @Override

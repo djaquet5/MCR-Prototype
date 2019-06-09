@@ -1,8 +1,8 @@
 package prototypal;
 
-import maze.ReachableCell;
+import maze.Cell;
 
 public interface Prototype {
-    void initialize(ReachableCell cell);
+    void initialize(Cell cell);
     Prototype clonePrototype();
 }

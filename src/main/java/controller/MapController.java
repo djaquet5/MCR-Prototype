@@ -1,24 +1,33 @@
 package controller;
 
+import display.GameDisplayer;
 import entity.hero.Hero;
 import entity.monster.Monster;
+import entity.monster.Slime;
 import maze.Dungeon;
 import maze.ReachableCell;
 import prototypal.Prototype;
 import stuff.Item;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 
-public class MapController {
+public class MapController implements KeyListener {
     private static int turn = 1;
     private Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
     private Hero hero;
 
-    public MapController(Hero hero, Dungeon donjon){
-        this.hero = hero;
-        this.dungeon = donjon;
+    private GameDisplayer gameDisplayer;
+
+    private Monster testMonster;
+
+    public MapController(){
+        // TODO: initialize hero and dungeon
+        this.gameDisplayer = new GameDisplayer();
+        this.testMonster = new Slime();
     }
 
     public static int getTurn(){
@@ -82,5 +91,24 @@ public class MapController {
 
     public static void removeFromGame(Prototype p){
         monsterAndStuff.remove(p);
+    }
+
+    public GameDisplayer getGameDisplayer() {
+        return gameDisplayer;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+
     }
 }

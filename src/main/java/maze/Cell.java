@@ -1,25 +1,20 @@
 package maze;
 
-import display.GameDisplayer;
 import prototypal.PrototypeMaze;
-
-import java.awt.*;
 
 public abstract class Cell implements PrototypeMaze {
 
-    private Dungeon dungeon;
     private int posX;
     private int posY;
-    private Color color;
 
     Cell(Cell c) {
         this.posX = c.posX;
         this.posY = c.posY;
-        this.color = c.color;
     }
 
-    public Cell(Color color){
-        this.color = color;
+    public Cell(){
+        this.posX = 0;
+        this.posY = 0;
     }
 
     public int getPosX() {
@@ -30,17 +25,15 @@ public abstract class Cell implements PrototypeMaze {
         return posY;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void initialize(Dungeon dungeon, int posX, int posY) {
-        this.dungeon = dungeon;
+    public void initialize(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
 
+    public boolean isReachable() {
+        return false;
+    }
+
     @Override
     public abstract PrototypeMaze cloneMaze();
-    public abstract void draw(Graphics2D g, GameDisplayer observer);
 }

@@ -1,34 +1,73 @@
 package display;
 
+import entity.Character;
+import entity.monster.Monster;
+import entity.monster.Slime;
+import maze.Cell;
 import maze.Dungeon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GameDisplayer extends JPanel implements ActionListener {
 
     private Dungeon dungeon;
+    private Cell startCell;
 
-    private final static int MAZE_DIMENSION = 10;
+    private static int turn = 0;
+
+    private Timer timer;
+
     private final static int MAZE_SIZE = 1000;
 
-    public final static Image STONE = new ImageIcon("src/textures/stone.jpg").getImage();
-    public final static Image DIRT = new ImageIcon("src/textures/dirt.png").getImage();
+    private int cellSize;
+    private int imageSize;
+    private int cellOffset;
 
+    private Image STONE;
+    private Image DIRT;
+    private Image GRASS;
+
+    private Image HERO;
+
+    private Monster testMonster;
 
     public GameDisplayer() {
+        init();
+    }
+
+    private void init() {
         loadImages();
         setBackground(Color.black);
         setPreferredSize(new Dimension(MAZE_SIZE, MAZE_SIZE));
-        //Dungeon dungeon = new Dungeon(MAZE_DIMENSION, MAZE_DIMENSION);
+
+        timer = new Timer(40, this);
+        timer.start();
+
+        addKeyListener(new GameControls());
+
+        dungeon = generate10x10Dungeon();
+
+        this.cellSize = MAZE_SIZE / dungeon.getDimension();
+        // TODO: reconfigure these hardcoded values
+        this.imageSize = cellSize - 10;
+        this.cellOffset = 5;
+
+        this.startCell = dungeon.getCell(0, 0);
+
+        // TODO: to remove
+        testMonster = new Slime();
+        testMonster.setPosition(startCell);
     }
 
     private void loadImages() {
 
-        ImageIcon iid = new ImageIcon("src/textures/grass.jpg");
+        STONE = new ImageIcon("src/textures/stone.jpg").getImage();
+        DIRT = new ImageIcon("src/textures/dirt.png").getImage();
+        GRASS = new ImageIcon("src/textures/grass.jpg").getImage();
 
+        HERO = new ImageIcon("src/Characters/DM1/right-stand.png").getImage();
     }
 
     @Override
@@ -37,27 +76,91 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) graphics;
 
-        g2d.setColor(Color.WHITE);
+        drawDungeon(g2d);
 
-        for(int i = 0; i < MAZE_DIMENSION; i++) {
-            g2d.drawLine(0, i * 100, getWidth(), i * 100);
-            g2d.drawLine(i* 100, 0, i*100, getHeight());
+        g2d.drawImage(HERO, cellOffset + testMonster.getPosition().getPosX() * cellSize,
+                cellOffset + testMonster.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
+
+    }
+
+    private void drawDungeon(Graphics2D g2d) {
+        for(int i = 0; i < dungeon.getDimension(); i++) {
+            g2d.drawLine(0, i * cellSize, getWidth(), i * cellSize);
+            g2d.drawLine(i* cellSize, 0, i*cellSize, getHeight());
         }
 
-        //g2d.drawImage(grass, 5, 5, 90, 90,  this);
-        /*for(int i = 0; i < MAZE_DIMENSION; i++) {
-            g2d.drawImage(grass, 5 , 5 + (i * 100) , 90, 90,  this);
-            g2d.drawImage(stone, 5 + (i * 100), 5 + (i * 100) , 90, 90,  this);
-        }*/
-
+        for(int i = 0; i < dungeon.getDimension(); i++) {
+            for(int j = 0; j < dungeon.getDimension(); j++) {
+                Cell currentCell = dungeon.getCells()[i][j];
+                if(currentCell.isReachable()) {
+                    //g2d.drawImage(STONE, 5 , 5 + (i * 100) , 90, 90,  this);
+                    g2d.drawImage(STONE, cellOffset + currentCell.getPosX() * cellSize,
+                            cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
+                }
+            }
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
+        repaint();
     }
 
-    public void generateRandomDungeon() {
-        
+    class GameControls extends KeyAdapter {
+
+        @Override
+        public void keyTyped(KeyEvent keyEvent) {
+            int key = keyEvent.getKeyCode();
+
+            if (key == KeyEvent.VK_S) {
+                System.out.println("Moved down");
+                moveHeroDown(testMonster);
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent keyEvent) {
+            int key = keyEvent.getKeyCode();
+
+            if (key == KeyEvent.VK_S) {
+                System.out.println("Moved down");
+                moveHeroDown(testMonster);
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent keyEvent) {
+            int key = keyEvent.getKeyCode();
+
+            if (key == KeyEvent.VK_S) {
+                System.out.println("Moved down");
+                moveHeroDown(testMonster);
+            }
+        }
     }
+
+    private void moveHeroDown(Character hero) {
+        Cell cell = hero.getPosition();
+        Cell nextCell = dungeon.getCell(cell.getPosX(), cell.getPosY() + 1);
+        if(nextCell.isReachable()) {
+            hero.setPosition(nextCell);
+        }
+    }
+
+    private Dungeon generate10x10Dungeon() {
+        int[][] cells = new int[][]{
+                {1, 1, 1, 1, 0, 0, 0, 1, 1, 1},
+                {1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
+                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 1, 1, 1, 0},
+                {0, 1, 1, 1, 0, 1, 0, 0, 1, 0},
+                {0, 1, 0, 0, 0, 1, 0, 1, 1, 1},
+                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1}
+        };
+        return new Dungeon(cells);
+    }
+
 }
