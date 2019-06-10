@@ -1,5 +1,6 @@
 package controller;
 
+import display.Game;
 import display.GameDisplayer;
 import entity.hero.Hero;
 import entity.monster.Monster;
@@ -18,8 +19,6 @@ public class MapController{
     private static LinkedList<Prototype> monsterAndStuff;
     private static Hero hero;
 
-    private GameDisplayer gameDisplayer;
-
     private Monster testMonster;
 
     public MapController(Hero hero, Dungeon dungeon){
@@ -27,7 +26,6 @@ public class MapController{
         this.dungeon = dungeon;
         monsterAndStuff = new LinkedList<>();
         // TODO: initialize hero and dungeon
-        this.gameDisplayer = new GameDisplayer();
         this.testMonster = new Slime();
     }
 
@@ -43,14 +41,7 @@ public class MapController{
         /**
          * On découvre les cases autour de nous
          */
-        for(int x = -1; x <= 1; ++x){
-            for(int y = -1; y <= 1; ++y){
-                if(hero.getPosition().getPosX() + x >= 0 && hero.getPosition().getPosX() + x < dungeon.getMaxX() &&
-                        hero.getPosition().getPosY() + y >= 0 && hero.getPosition().getPosY() + y < dungeon.getMaxY()) {
-                    dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
-                }
-            }
-        }
+        discoverCells();
 
         for(Prototype p : monsterAndStuff){
             if(p instanceof Monster){
@@ -91,6 +82,17 @@ public class MapController{
         }
     }
 
+    public static void discoverCells(){
+        for(int x = -1; x <= 1; ++x){
+            for(int y = -1; y <= 1; ++y){
+                if(hero.getPosition().getPosX() + x >= 0 && hero.getPosition().getPosX() + x < dungeon.getMaxX() &&
+                        hero.getPosition().getPosY() + y >= 0 && hero.getPosition().getPosY() + y < dungeon.getMaxY()) {
+                    dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+                }
+            }
+        }
+    }
+
     public static void enterToGame(Prototype p){
         monsterAndStuff.add(p);
     }
@@ -104,8 +106,4 @@ public class MapController{
     public static LinkedList<Prototype> getMonsterAndStuff(){return monsterAndStuff;}
 
     public static Dungeon getDungeon(){return dungeon;}
-
-    public GameDisplayer getGameDisplayer() {
-        return gameDisplayer;
-    }
 }

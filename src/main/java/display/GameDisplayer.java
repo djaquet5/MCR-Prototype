@@ -9,6 +9,7 @@ import maze.Dungeon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Map;
 
 public class GameDisplayer extends JPanel implements ActionListener {
 
@@ -55,15 +56,12 @@ public class GameDisplayer extends JPanel implements ActionListener {
         this.startCell = dungeon.getCell(0, 0);
 
         MapController.getHero().setPosition(startCell);
+        System.out.println("ICI");
+        MapController.discoverCells();
     }
 
     private void loadImages() {
-
-        STONE = new ImageIcon("src/textures/stone.jpg").getImage();
-        DIRT = new ImageIcon("src/textures/dirt.png").getImage();
-        GRASS = new ImageIcon("src/textures/grass.jpg").getImage();
-
-        HERO = new ImageIcon("src/Characters/DM1/right-stand.png").getImage();
+        HERO = new ImageIcon(MapController.getHero().getDisplayImage()).getImage();
     }
 
     @Override
@@ -88,11 +86,9 @@ public class GameDisplayer extends JPanel implements ActionListener {
         for(int i = 0; i < dungeon.getDimension(); i++) {
             for(int j = 0; j < dungeon.getDimension(); j++) {
                 Cell currentCell = dungeon.getCells()[i][j];
-                if(currentCell.isReachable()) {
-                    //g2d.drawImage(STONE, 5 , 5 + (i * 100) , 90, 90,  this);
-                    g2d.drawImage(STONE, cellOffset + currentCell.getPosX() * cellSize,
-                            cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
-                }
+                Image sol  = new ImageIcon(currentCell.getFontPath()).getImage();
+                g2d.drawImage(sol, cellOffset + currentCell.getPosX() * cellSize,
+                        cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
             }
         }
     }
@@ -100,13 +96,5 @@ public class GameDisplayer extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         repaint();
-    }
-
-    public void moveHeroDown(GameCharacter hero) {
-        Cell cell = hero.getPosition();
-        Cell nextCell = dungeon.getCell(cell.getPosX(), cell.getPosY() + 1);
-        if(nextCell.isReachable()) {
-            hero.setPosition(nextCell);
-        }
     }
 }

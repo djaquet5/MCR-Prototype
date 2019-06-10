@@ -2,11 +2,12 @@ package maze;
 
 import prototypal.PrototypeMaze;
 
+
 public abstract class Cell implements PrototypeMaze {
 
     private int posX;
     private int posY;
-    private boolean isDiscovered;
+    protected boolean isDiscovered;
 
     Cell(Cell c) {
         this.posX = c.posX;
@@ -38,6 +39,10 @@ public abstract class Cell implements PrototypeMaze {
 
     public boolean isReachable(){
         return false;
+    }
+
+    public String getFontPath(){
+        return "src/textures/dirt.png";
     }
 
     @Override

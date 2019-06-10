@@ -19,7 +19,6 @@ public class Game extends JFrame {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
-                System.out.println(keyEvent.getKeyChar());
                 if ('s' == keyEvent.getKeyChar()) {
                     System.out.println("Moved down");
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() + 1)){

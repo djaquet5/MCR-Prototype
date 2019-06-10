@@ -13,6 +13,14 @@ public class ReachableCell extends Cell {
     }
 
     @Override
+    public String getFontPath(){
+        if(isDiscovered){
+            return "src/textures/stone.jpg";
+        }
+        return super.getFontPath();
+    }
+
+    @Override
     public boolean isReachable() {
         return true;
     }

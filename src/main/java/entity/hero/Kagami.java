@@ -8,7 +8,7 @@ import stuff.Potion;
 public class Kagami extends Hero {
 
     public Kagami() {
-        super(100, 100, 400, 300, 250, 250, "PATH", 1, 0, 20, 0.2, 0.3, 0.4, 0.5, 0.2, 0.3);
+        super(100, 100, 400, 300, 250, 250, "src/Characters/DM1/face-stand.png", 1, 0, 20, 0.2, 0.3, 0.4, 0.5, 0.2, 0.3);
         spellSlots.add(new Spell("Kintama Crusher", 40, 1));
         spellSlots.add(new Spell("Winter Storm", 60, 10));
         spellSlots.add(new Spell("Rage", 70, 15));
