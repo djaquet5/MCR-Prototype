@@ -1,6 +1,9 @@
 package maze;
 
+import controller.MapController;
+
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 
 import static prototypal.GameFactory.*;
@@ -38,6 +41,29 @@ public class Dungeon {
                     this.cells[i][j] = MakeEmptyCell(i, j);
                 } else {
                     this.cells[i][j] = MakeReachableCell(i, j);
+                    switch (cellConfig[i][j]) {
+                        case 2:
+                            MapController.enterToGame(MakeSlime((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 3:
+                            MapController.enterToGame(MakeSquid((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 4:
+                            MapController.enterToGame(MakeOctopus((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 5:
+                            MapController.enterToGame(MakeSummoner((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 6:
+                            MapController.enterToGame(MakeKraken((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 7:
+                            MapController.enterToGame(MakePotion((ReachableCell) this.cells[i][j]));
+                            break;
+                        case 8:
+                            MapController.enterToGame(MakeEther((ReachableCell) this.cells[i][j]));
+                            break;
+                    }
                 }
             }
         }
@@ -79,16 +105,16 @@ public class Dungeon {
 
     public static Dungeon generate10x10Dungeon() {
         int[][] cells = new int[][]{
-                {1, 1, 1, 1, 0, 0, 0, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-                {0, 0, 0, 1, 0, 1, 1, 1, 1, 0},
-                {0, 1, 1, 1, 0, 1, 0, 0, 1, 0},
-                {0, 1, 0, 0, 0, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 0}
+                {1, 7, 7, 1, 0, 0, 0, 1, 7, 8},
+                {1, 2, 1, 1, 0, 0, 1, 1, 7, 8},
+                {7, 1, 8, 1, 0, 0, 1, 0, 0, 0},
+                {1, 1, 1, 2, 0, 0, 3, 0, 0, 0},
+                {0, 0, 0, 8, 0, 8, 1, 1, 4, 0},
+                {0, 1, 3, 1, 0, 1, 0, 0, 1, 0},
+                {0, 1, 0, 0, 0, 2, 0, 1, 1, 1},
+                {0, 4, 1, 1, 1, 1, 0, 1, 1, 1},
+                {0, 1, 1, 7, 1, 1, 0, 1, 1, 6},
+                {0, 7, 1, 5, 8, 1, 0, 1, 6, 0}
         };
 
         return new Dungeon(cells);

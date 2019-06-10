@@ -6,7 +6,7 @@ import prototypal.Prototype;
 public class Potion extends Item {
 
     public Potion(){
-        super("Potion", "./icons/healthPotion.png");
+        super("Potion", "src/icons/healthPotion.png");
     }
 
     @Override

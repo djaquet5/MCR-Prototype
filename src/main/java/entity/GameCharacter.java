@@ -86,6 +86,7 @@ public abstract class GameCharacter implements Prototype {
         return magicDefence;
     }
 
+    @Override
     public String getDisplayImage(){
         return displayImage;
     }
@@ -122,6 +123,7 @@ public abstract class GameCharacter implements Prototype {
         return spellSlots;
     }
 
+    @Override
     public Cell getPosition(){ return position; }
 
     public void setPosition(Cell position) {

@@ -5,6 +5,7 @@ import entity.GameCharacter;
 import entity.hero.Kagami;
 import maze.Cell;
 import maze.Dungeon;
+import prototypal.Prototype;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +57,6 @@ public class GameDisplayer extends JPanel implements ActionListener {
         this.startCell = dungeon.getCell(0, 0);
 
         MapController.getHero().setPosition(startCell);
-        System.out.println("ICI");
         MapController.discoverCells();
     }
 
@@ -89,6 +89,13 @@ public class GameDisplayer extends JPanel implements ActionListener {
                 Image sol  = new ImageIcon(currentCell.getFontPath()).getImage();
                 g2d.drawImage(sol, cellOffset + currentCell.getPosX() * cellSize,
                         cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
+            }
+        }
+        for(Prototype p : MapController.getMonsterAndStuff()){
+            if(p.getPosition().getIsDiscovered()) {
+                Image mOrS = new ImageIcon(p.getDisplayImage()).getImage();
+                g2d.drawImage(mOrS, cellOffset + p.getPosition().getPosX() * cellSize,
+                        cellOffset + cellOffset + p.getPosition().getPosY() * cellSize, imageSize, imageSize, this);
             }
         }
     }

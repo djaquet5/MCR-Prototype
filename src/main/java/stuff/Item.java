@@ -16,8 +16,14 @@ public abstract class Item implements Prototype {
 
     public abstract void use(GameCharacter gameCharacter);
 
+    @Override
     public Cell getPosition() {
         return position;
+    }
+
+    @Override
+    public String getDisplayImage(){
+        return image;
     }
 
     @Override

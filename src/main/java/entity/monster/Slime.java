@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class Slime extends Monster{
     public Slime(){
-        super(60, 20, 40, 180, 20, 10, "PATH", 10);
+        super(60, 20, 40, 180, 20, 10, "src/monsters/Slime/slime.png", 10);
         spellSlots.add(new Spell("Acid Body", 40, 4));
         inventory.put(new Potion(), 1);
         inventory.put(new Ether(), 1);

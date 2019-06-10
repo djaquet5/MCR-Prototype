@@ -35,8 +35,6 @@ public class Game extends JFrame {
                 }
                 if ('d' == keyEvent.getKeyChar()) {
                     System.out.println("Moved right");
-                    System.out.println(MapController.getHero());
-                    System.out.println(MapController.getHero());
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() + 1, MapController.getHero().getPosition().getPosY())){
                         MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() + 1,
                                 MapController.getHero().getPosition().getPosY()));

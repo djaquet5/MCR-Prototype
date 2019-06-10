@@ -1,10 +1,9 @@
 package controller;
 
 import display.Game;
-import display.GameDisplayer;
+import display.GameOver;
 import entity.hero.Hero;
 import entity.monster.Monster;
-import entity.monster.Slime;
 import maze.Dungeon;
 import maze.ReachableCell;
 import prototypal.Prototype;
@@ -17,16 +16,17 @@ public class MapController{
     private static Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
-    private static Hero hero;
 
-    private Monster testMonster;
+    static {
+        monsterAndStuff = new LinkedList<>();
+    }
+
+    ;
+    private static Hero hero;
 
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
         this.dungeon = dungeon;
-        monsterAndStuff = new LinkedList<>();
-        // TODO: initialize hero and dungeon
-        this.testMonster = new Slime();
     }
 
     public static int getTurn(){
@@ -78,6 +78,7 @@ public class MapController{
             /**
              * Game Over
              */
+            Game.getInstance().setContentPane(new GameOver().getGameOverPanel());
 
         }
     }
@@ -94,6 +95,7 @@ public class MapController{
     }
 
     public static void enterToGame(Prototype p){
+        System.out.println(monsterAndStuff.size());
         monsterAndStuff.add(p);
     }
 

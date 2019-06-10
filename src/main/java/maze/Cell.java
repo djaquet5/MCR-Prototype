@@ -45,6 +45,10 @@ public abstract class Cell implements PrototypeMaze {
         return "src/textures/dirt.png";
     }
 
+    public boolean getIsDiscovered(){
+        return isDiscovered;
+    }
+
     @Override
     public abstract PrototypeMaze cloneMaze();
 }

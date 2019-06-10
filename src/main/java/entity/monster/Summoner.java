@@ -23,7 +23,7 @@ public class Summoner extends Monster {
     private LinkedList<Monster> monsters;
 
     public Summoner() {
-        super(280, 200, 150, 250, 55, 235, "PATH", 90);
+        super(280, 200, 150, 250, 55, 235, "src/monsters/Summoner/summoner.png", 90);
         monsters = new LinkedList<>();
         monsters.add(new Octopus());
         monsters.add(new Squid());

@@ -6,7 +6,7 @@ import prototypal.Prototype;
 public class Ether extends Item {
 
     public Ether() {
-        super("Ether", "./icons/etherPotion.png");
+        super("Ether", "src/icons/etherPotion.png");
     }
 
     @Override

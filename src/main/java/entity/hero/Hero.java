@@ -14,11 +14,11 @@ public abstract class Hero extends GameCharacter {
     private final double intelligence;
     private final double wisdom;
 
-    public Hero(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage, int lvl, int exp, int lvlcap, double vitality, double mysticism, double strength, double constitution, double intelligence, double wisdom) {
+    public Hero(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage, double vitality, double mysticism, double strength, double constitution, double intelligence, double wisdom) {
         super(hp, mp, attack, defence, magic, magicDefence, displayImage);
-        this.lvl = lvl;
-        this.exp = exp;
-        this.lvlcap = lvlcap;
+        this.lvl = 1;
+        this.exp = 0;
+        this.lvlcap = 100;
         expToLvl = 100 * (int)Math.pow(2, lvl-1);
         this.vitality = vitality;
         this.mysticism = mysticism;
