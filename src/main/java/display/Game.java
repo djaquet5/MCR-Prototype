@@ -1,8 +1,6 @@
 package display;
 
 import controller.MapController;
-import entity.hero.Hero;
-import maze.Dungeon;
 import maze.ReachableCell;
 
 import javax.swing.*;
@@ -11,13 +9,13 @@ import java.awt.event.KeyListener;
 
 public class Game extends JFrame {
 
-
-    public Game() {
+    private static  Game game;
+    private Game() {
         setTitle("Prototype");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setFocusable(true);
-        setContentPane(new MainMenu(this).getMainPanel());
+        setContentPane(new MainMenu().getMainPanel());
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
@@ -66,11 +64,19 @@ public class Game extends JFrame {
         });
         setVisible(true);
         pack();
+        game = this;
     }
 
     public void changePanel(JPanel panel){
         setContentPane(panel);
         repaint();
         revalidate();
+    }
+
+    public static Game getInstance(){
+        if(game == null){
+            game = new Game();
+        }
+        return game;
     }
 }
