@@ -1,3 +1,5 @@
+package display;
+
 import controller.MapController;
 import entity.hero.*;
 import maze.Dungeon;
@@ -11,13 +13,15 @@ public class MainMenu {
     private JButton magusButton;
     private JButton warriorButton;
     private JButton kagamiButton;
+    private JPanel mainPanel;
 
-    public MainMenu(){
+    public MainMenu(Game game){
         magusButton.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //new MapController(new Magus(), new Dungeon(50, 50));
+                new MapController(new Magus(), Dungeon.generate10x10Dungeon());
+                game.changePanel(new GameDisplayer());
             }
 
             @Override
@@ -37,7 +41,8 @@ public class MainMenu {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //new MapController(new Warrior(), new Dungeon(50, 50));
+                new MapController(new Warrior(), Dungeon.generate10x10Dungeon());
+                game.changePanel(new GameDisplayer());
             }
 
             @Override
@@ -57,7 +62,9 @@ public class MainMenu {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //new MapController(new Kagami(), new Dungeon(50, 50));
+                new MapController(new Kagami(), Dungeon.generate10x10Dungeon());
+                game.changePanel(new GameDisplayer());
+
             }
 
             @Override
@@ -72,5 +79,9 @@ public class MainMenu {
             @Override
             public void mouseExited(MouseEvent mouseEvent) {}
         });
+    }
+
+    public JPanel getMainPanel(){
+        return mainPanel;
     }
 }

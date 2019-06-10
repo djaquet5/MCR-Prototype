@@ -38,7 +38,7 @@ public class Dungeon {
         }
     }
 
-    private boolean isReachable(int x, int y){
+    public boolean isReachable(int x, int y){
         return cells[x][y].isReachable();
     }
 
@@ -68,7 +68,7 @@ public class Dungeon {
         return cells[posX][posY];
     }
 
-    public static void main(String[] args) {
+    public static Dungeon generate10x10Dungeon() {
         int[][] cells = new int[][]{
                 {1, 1, 1, 1, 0, 0, 0, 1, 1, 1},
                 {1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
@@ -90,5 +90,6 @@ public class Dungeon {
                 System.out.println("Cell[" + currentCell.getPosX()+ "][" + currentCell.getPosY() + "]");
             }
         }
+        return dungeon;
     }
 }

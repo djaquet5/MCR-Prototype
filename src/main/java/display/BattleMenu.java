@@ -1,3 +1,5 @@
+package display;
+
 import controller.BattleController;
 import entity.hero.Hero;
 import entity.monster.Monster;

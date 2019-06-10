@@ -1,5 +1,6 @@
 package display;
 
+import controller.MapController;
 import entity.GameCharacter;
 import entity.hero.Kagami;
 import maze.Cell;
@@ -11,7 +12,6 @@ import java.awt.event.*;
 
 public class GameDisplayer extends JPanel implements ActionListener {
 
-    private Dungeon dungeon;
     private Cell startCell;
 
     private static int turn = 0;
@@ -30,7 +30,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
     private Image HERO;
 
-    private Kagami testKagami;
+    private Dungeon dungeon;
 
     public GameDisplayer() {
         init();
@@ -43,10 +43,9 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         timer = new Timer(40, this);
         timer.start();
+        setFocusable(true);
 
-        addKeyListener(new GameControls());
-
-        dungeon = generate10x10Dungeon();
+        dungeon = MapController.getDungeon();
 
         this.cellSize = MAZE_SIZE / dungeon.getDimension();
         // TODO: reconfigure these hardcoded values
@@ -55,9 +54,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         this.startCell = dungeon.getCell(0, 0);
 
-        // TODO: to remove
-        testKagami = new Kagami();
-        testKagami.setPosition(startCell);
+        MapController.getHero().setPosition(startCell);
     }
 
     private void loadImages() {
@@ -77,8 +74,8 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         drawDungeon(g2d);
 
-        g2d.drawImage(HERO, cellOffset + testKagami.getPosition().getPosX() * cellSize,
-                cellOffset + testKagami.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
+        //g2d.drawImage(HERO, cellOffset + testKagami.getPosition().getPosX() * cellSize,
+        //        cellOffset + testKagami.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
 
     }
 
@@ -105,61 +102,11 @@ public class GameDisplayer extends JPanel implements ActionListener {
         repaint();
     }
 
-    class GameControls extends KeyAdapter {
-
-        @Override
-        public void keyTyped(KeyEvent keyEvent) {
-            int key = keyEvent.getKeyCode();
-
-            if (key == KeyEvent.VK_S) {
-                System.out.println("Moved down");
-                moveHeroDown(testKagami);
-            }
-        }
-
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-            int key = keyEvent.getKeyCode();
-
-            if (key == KeyEvent.VK_S) {
-                System.out.println("Moved down");
-                moveHeroDown(testKagami);
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-            int key = keyEvent.getKeyCode();
-
-            if (key == KeyEvent.VK_S) {
-                System.out.println("Moved down");
-                moveHeroDown(testKagami);
-            }
-        }
-    }
-
-    private void moveHeroDown(GameCharacter hero) {
+    public void moveHeroDown(GameCharacter hero) {
         Cell cell = hero.getPosition();
         Cell nextCell = dungeon.getCell(cell.getPosX(), cell.getPosY() + 1);
         if(nextCell.isReachable()) {
             hero.setPosition(nextCell);
         }
     }
-
-    private Dungeon generate10x10Dungeon() {
-        int[][] cells = new int[][]{
-                {1, 1, 1, 1, 0, 0, 0, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-                {0, 0, 0, 1, 0, 1, 1, 1, 1, 0},
-                {0, 1, 1, 1, 0, 1, 0, 0, 1, 0},
-                {0, 1, 0, 0, 0, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                {0, 1, 1, 1, 1, 1, 0, 1, 1, 1}
-        };
-        return new Dungeon(cells);
-    }
-
 }

@@ -9,22 +9,22 @@ import maze.ReachableCell;
 import prototypal.Prototype;
 import stuff.Item;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.LinkedList;
 
-public class MapController implements KeyListener {
+public class MapController{
     private static int turn = 1;
-    private Dungeon dungeon;
+    private static Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
-    private Hero hero;
+    private static Hero hero;
 
     private GameDisplayer gameDisplayer;
 
     private Monster testMonster;
 
-    public MapController(){
+    public MapController(Hero hero, Dungeon dungeon){
+        this.hero = hero;
+        this.dungeon = dungeon;
         // TODO: initialize hero and dungeon
         this.gameDisplayer = new GameDisplayer();
         this.testMonster = new Slime();
@@ -34,15 +34,7 @@ public class MapController implements KeyListener {
         return turn;
     }
 
-    public void play(){
-        while(true){
-
-
-
-        }
-    }
-
-    public void move(ReachableCell cell){
+    public static void move(ReachableCell cell){
         /**
          * On bouge
          */
@@ -79,7 +71,7 @@ public class MapController implements KeyListener {
         ++turn;
     }
 
-    public void battle(Prototype p){
+    public static void battle(Prototype p){
         /**
          * On combat
          */
@@ -102,22 +94,13 @@ public class MapController implements KeyListener {
         monsterAndStuff.remove(p);
     }
 
+    public static Hero getHero(){ return hero;}
+
+    public static LinkedList<Prototype> getMonsterAndStuff(){return monsterAndStuff;}
+
+    public static Dungeon getDungeon(){return dungeon;}
+
     public GameDisplayer getGameDisplayer() {
         return gameDisplayer;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent keyEvent) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent keyEvent) {
-
     }
 }
