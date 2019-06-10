@@ -10,6 +10,8 @@ import static prototypal.GameFactory.*;
  */
 public class Dungeon {
     private Cell[][] cells;
+    private int x;
+    private int y;
 
     public Dungeon(int sizeX, int sizeY) {
         cells = new Cell[sizeX][sizeY];
@@ -19,6 +21,9 @@ public class Dungeon {
                 cells[i][j] = MakeReachableCell(i, j);
             }
         }
+
+        this.x = x;
+        this.y = y;
     }
 
     public Dungeon(int[][] cellConfig) {
@@ -39,7 +44,13 @@ public class Dungeon {
     }
 
     public boolean isReachable(int x, int y){
-        return cells[x][y].isReachable();
+        try {
+            System.out.println(cells[0][0]);
+            System.out.println("Methode isReachable " + x + " " + y);
+            return cells[x][y].isReachable();
+        }catch(ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     public ReachableCell getRandomAdjacentReachableCell(Cell rc){
@@ -65,6 +76,7 @@ public class Dungeon {
     }
 
     public Cell getCell(int posX, int posY) {
+        System.out.println(posX + " " + posY);
         return cells[posX][posY];
     }
 
@@ -91,5 +103,13 @@ public class Dungeon {
             }
         }
         return dungeon;
+    }
+
+    public int getMaxX(){
+        return x;
+    }
+
+    public int getMaxY(){
+        return y;
     }
 }

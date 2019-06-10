@@ -25,6 +25,7 @@ public class MapController{
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
         this.dungeon = dungeon;
+        monsterAndStuff = new LinkedList<>();
         // TODO: initialize hero and dungeon
         this.gameDisplayer = new GameDisplayer();
         this.testMonster = new Slime();
@@ -44,7 +45,10 @@ public class MapController{
          */
         for(int x = -1; x <= 1; ++x){
             for(int y = -1; y <= 1; ++y){
-                dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+                if(hero.getPosition().getPosX() + x >= 0 && hero.getPosition().getPosX() + x < dungeon.getMaxX() &&
+                        hero.getPosition().getPosY() + y >= 0 && hero.getPosition().getPosY() + y < dungeon.getMaxY()) {
+                    dungeon.getCell(hero.getPosition().getPosX() + x, hero.getPosition().getPosY() + y).discover();
+                }
             }
         }
 

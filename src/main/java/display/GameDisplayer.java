@@ -74,8 +74,8 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         drawDungeon(g2d);
 
-        //g2d.drawImage(HERO, cellOffset + testKagami.getPosition().getPosX() * cellSize,
-        //        cellOffset + testKagami.getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
+        g2d.drawImage(HERO, cellOffset + MapController.getHero().getPosition().getPosX() * cellSize,
+                cellOffset + MapController.getHero().getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
 
     }
 
