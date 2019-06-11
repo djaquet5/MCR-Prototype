@@ -1,6 +1,8 @@
 package controller;
 
+import display.BattleMenu;
 import display.Game;
+import display.GameDisplayer;
 import display.GameOver;
 import entity.hero.Hero;
 import entity.monster.Monster;
@@ -19,6 +21,8 @@ public class MapController{
     private static LinkedList<Prototype> victor = new LinkedList<>();
     private static LinkedList<Prototype> newMonsters = new LinkedList<>();
     private static Hero hero;
+
+    private static final Object LOCK = new Object() {};
 
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
@@ -84,18 +88,28 @@ public class MapController{
     }
 
     public static void battle(Monster m){
+        // On combat
+        Game.getInstance().changePanel(new BattleMenu(m, hero).getBattlePanel());
         System.out.println("Battle");
-        /**
-         * On combat
-         */
+
+        synchronized (LOCK){
+            try {
+                System.out.println("ICI");
+                LOCK.wait();
+                System.out.println("LA");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Game.getInstance().changePanel(GameDisplayer.getInstance());
         if(m.isDead()){
             hero.gainExp(m.getExpPoint());
             victor.add(m);
         }
+
         if(hero.isDead()){
-            /**
-             * Game Over
-             */
+            // Game Over
             Game.getInstance().setContentPane(new GameOver().getGameOverPanel());
 
         }
@@ -125,4 +139,10 @@ public class MapController{
     public static LinkedList<Prototype> getMonsterAndStuff(){return monsterAndStuff;}
 
     public static Dungeon getDungeon(){return dungeon;}
+
+    public static void signal(){
+        synchronized (LOCK){
+            LOCK.notify();
+        }
+    }
 }

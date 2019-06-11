@@ -1,6 +1,7 @@
 package display;
 
 import controller.BattleController;
+import controller.MapController;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import magic.Spell;
@@ -14,8 +15,8 @@ import java.awt.event.MouseListener;
 import java.util.Map;
 import java.util.Objects;
 
-public class BattleMenu {
-    private JPanel panel1;
+public class BattleMenu extends Thread {
+    private JPanel battlePanel;
     private JComboBox<Map.Entry<Item, Integer>> comboBoxObject;
     private JComboBox<Spell> comboBoxMagic;
     private JLabel hpHeroLabel;
@@ -33,10 +34,11 @@ public class BattleMenu {
     private String info;
 
     public BattleMenu(Monster monster, Hero hero){
+        System.out.println("Battle menu");
         this.monster = monster;
         this.hero = hero;
 
-        ImageIcon icon = new ImageIcon(monster.getDisplayImage() + "/totalForm", "");
+        ImageIcon icon = new ImageIcon(monster.getDisplayImage());
         pictureLabel.setDisabledIcon(icon);
 
         attackLabel.setText("Attack");
@@ -100,6 +102,7 @@ public class BattleMenu {
             }
             updateInfo();
         }
+        MapController.signal();
     }
 
     private void updateInfo(){
@@ -108,5 +111,9 @@ public class BattleMenu {
         hpMonsterLabel.setText("" + monster.getHp() + "/" + monster.getMaxHp());
         mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
         infoLabel.setText(info);
+    }
+
+    public JPanel getBattlePanel(){
+        return battlePanel;
     }
 }

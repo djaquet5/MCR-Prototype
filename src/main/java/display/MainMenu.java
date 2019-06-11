@@ -21,7 +21,7 @@ public class MainMenu {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 new MapController(new Magus(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(new GameDisplayer());
+                Game.getInstance().changePanel(GameDisplayer.getInstance());
             }
 
             @Override
@@ -42,7 +42,7 @@ public class MainMenu {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 new MapController(new Warrior(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(new GameDisplayer());
+                Game.getInstance().changePanel(GameDisplayer.getInstance());
             }
 
             @Override
@@ -63,7 +63,7 @@ public class MainMenu {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 new MapController(new Kagami(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(new GameDisplayer());
+                Game.getInstance().changePanel(GameDisplayer.getInstance());
 
             }
 

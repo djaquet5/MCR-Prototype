@@ -1,22 +1,18 @@
 package display;
 
 import controller.MapController;
-import entity.GameCharacter;
-import entity.hero.Kagami;
 import maze.Cell;
 import maze.Dungeon;
 import prototypal.Prototype;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameDisplayer extends JPanel implements ActionListener {
 
     private Cell startCell;
-
-    private static int turn = 0;
 
     private Timer timer;
 
@@ -26,15 +22,13 @@ public class GameDisplayer extends JPanel implements ActionListener {
     private int imageSize;
     private int cellOffset;
 
-    private Image STONE;
-    private Image DIRT;
-    private Image GRASS;
-
     private Image HERO;
 
     private Dungeon dungeon;
 
-    public GameDisplayer() {
+    private static GameDisplayer instance;
+
+    private GameDisplayer() {
         init();
     }
 
@@ -103,5 +97,12 @@ public class GameDisplayer extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         repaint();
+    }
+
+    public static GameDisplayer getInstance(){
+        if(instance == null){
+            instance = new GameDisplayer();
+        }
+        return instance;
     }
 }
