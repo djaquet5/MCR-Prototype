@@ -1,6 +1,8 @@
 package controller;
 
+import display.BattleMenu;
 import display.Game;
+import display.GameDisplayer;
 import display.GameOver;
 import entity.hero.Hero;
 import entity.monster.Monster;
@@ -91,10 +93,12 @@ public class MapController{
     }
 
     public static void battle(Prototype p){
-        System.out.println("Battle");
+
         /**
          * On combat
          */
+        Game.getInstance().changePanel(new BattleMenu((Monster)p, hero).getBattlePanel());
+        //Game.getInstance().changePanel(new GameDisplayer());
         if(((Monster) p).isDead()){
             hero.gainExp(((Monster) p).getExpPoint());
             victor.add(p);

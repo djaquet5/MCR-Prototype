@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BattleMenu {
-    private JPanel panel1;
+    private JPanel battlePanel;
     private JComboBox<Map.Entry<Item, Integer>> comboBoxObject;
     private JComboBox<Spell> comboBoxMagic;
     private JLabel hpHeroLabel;
@@ -36,7 +36,7 @@ public class BattleMenu {
         this.monster = monster;
         this.hero = hero;
 
-        ImageIcon icon = new ImageIcon(monster.getDisplayImage() + "/totalForm", "");
+        ImageIcon icon = new ImageIcon(monster.getDisplayImage());
         pictureLabel.setDisabledIcon(icon);
 
         attackLabel.setText("Attack");
@@ -108,5 +108,9 @@ public class BattleMenu {
         hpMonsterLabel.setText("" + monster.getHp() + "/" + monster.getMaxHp());
         mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
         infoLabel.setText(info);
+    }
+
+    public JPanel getBattlePanel(){
+        return battlePanel;
     }
 }
