@@ -15,13 +15,7 @@ public class MapController{
     private static int turn = 1;
     private static Dungeon dungeon;
 
-    private static LinkedList<Prototype> monsterAndStuff;
-
-    static {
-        monsterAndStuff = new LinkedList<>();
-    }
-
-    ;
+    private static LinkedList<Prototype> monsterAndStuff = new LinkedList<>();
     private static Hero hero;
 
     public MapController(Hero hero, Dungeon dungeon){
@@ -49,13 +43,13 @@ public class MapController{
                  * Les monstres bougent
                  */
                 ((Monster) p).interactionDonjon(dungeon);
-                if(hero.getPosition() == ((Monster) p).getPosition()){
+                if(hero.getPosition() == p.getPosition()){
                     /**
                      * Si même case, combat
                      */
                     battle(p);
                 }
-            }else if(p instanceof Item && hero.getPosition() == ((Item) p).getPosition()){
+            }else if(p instanceof Item && hero.getPosition() == p.getPosition()){
                 /**
                  * On ramasse les items sur la même case que nous
                  */
