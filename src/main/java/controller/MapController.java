@@ -53,9 +53,9 @@ public class MapController{
                     /**
                      * Si même case, combat
                      */
-                    battle(p);
+                    battle((Monster) p);
                 }
-            }else if(p instanceof Item && hero.getPosition() == p.getPosition()){
+            } else if(p instanceof Item && hero.getPosition() == p.getPosition()){
                 /**
                  * On ramasse les items sur la même case que nous
                  */
@@ -83,14 +83,14 @@ public class MapController{
         ++turn;
     }
 
-    public static void battle(Prototype p){
+    public static void battle(Monster m){
         System.out.println("Battle");
         /**
          * On combat
          */
-        if(((Monster) p).isDead()){
-            hero.gainExp(((Monster) p).getExpPoint());
-            victor.add(p);
+        if(m.isDead()){
+            hero.gainExp(m.getExpPoint());
+            victor.add(m);
         }
         if(hero.isDead()){
             /**
