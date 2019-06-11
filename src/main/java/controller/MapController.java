@@ -22,6 +22,8 @@ public class MapController{
     private static LinkedList<Prototype> newMonsters = new LinkedList<>();
     private static Hero hero;
 
+    private static final Object LOCK = new Object() {};
+
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
         this.dungeon = dungeon;
@@ -91,7 +93,17 @@ public class MapController{
          * On combat
          */
         Game.getInstance().changePanel(new BattleMenu((Monster)p, hero).getBattlePanel());
-        //Game.getInstance().changePanel(new GameDisplayer());
+        System.out.println("Battle");
+        synchronized (LOCK){
+            try {
+                System.out.println("ICI");
+                LOCK.wait();
+                System.out.println("LA");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Game.getInstance().changePanel(GameDisplayer.getInstance());
         if(((Monster) p).isDead()){
             hero.gainExp(((Monster) p).getExpPoint());
             victor.add(p);
@@ -129,4 +141,10 @@ public class MapController{
     public static LinkedList<Prototype> getMonsterAndStuff(){return monsterAndStuff;}
 
     public static Dungeon getDungeon(){return dungeon;}
+
+    public static void signal(){
+        synchronized (LOCK){
+            LOCK.notify();
+        }
+    }
 }
