@@ -11,6 +11,10 @@ import maze.ReachableCell;
 import prototypal.Prototype;
 import stuff.Item;
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.LinkedList;
 
 public class MapController{
@@ -24,9 +28,13 @@ public class MapController{
 
     private static final Object LOCK = new Object() {};
 
+    private static Game game;
+
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
         this.dungeon = dungeon;
+        this.game = Game.getInstance();
+
         for(Prototype p : newMonsters){
             monsterAndStuff.add(p);
         }
@@ -38,47 +46,35 @@ public class MapController{
     }
 
     public static void move(ReachableCell cell){
-        /**
-         * On bouge
-         */
+        // On bouge
         hero.setPosition(cell);
-        /**
-         * On découvre les cases autour de nous
-         */
+
+        // On découvre les cases autour de nous
         discoverCells();
 
         for(Prototype p : monsterAndStuff){
             if(p instanceof Monster){
-                /**
-                 * Les monstres bougent
-                 */
+                // Les monstres bougent
                 ((Monster) p).interactionDonjon(dungeon);
+
                 if(hero.getPosition() == p.getPosition()){
-                    /**
-                     * Si même case, combat
-                     */
+                    // Si même case, combat
                     battle((Monster) p);
                 }
             } else if(p instanceof Item && hero.getPosition() == p.getPosition()){
-                /**
-                 * On ramasse les items sur la même case que nous
-                 */
+                // On ramasse les items sur la même case que nous
                 hero.addToinventory((Item)p, 1);
                 victor.add(p);
             }
         }
 
-        /**
-         * On supprime les morts
-         */
+        // On supprime les morts
         for(Prototype p : victor){
             removeFromGame(p);
         }
         victor.clear();
 
-        /**
-         * On rajoute les monstres
-         */
+        // On rajoute les monstres
         for(Prototype p : newMonsters){
             monsterAndStuff.add(p);
         }
@@ -89,20 +85,21 @@ public class MapController{
 
     public static void battle(Monster m){
         // On combat
-        Game.getInstance().changePanel(new BattleMenu(m, hero).getBattlePanel());
         System.out.println("Battle");
+        game.setEnabled(false);
 
-        synchronized (LOCK){
-            try {
-                System.out.println("ICI");
-                LOCK.wait();
-                System.out.println("LA");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        JFrame battle = new JFrame("Battle");
+        battle.setSize(650, 480);
+        battle.add(new BattleMenu(m, hero).getBattlePanel());
+        battle.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                game.setEnabled(true);
             }
-        }
+        });
 
-        Game.getInstance().changePanel(GameDisplayer.getInstance());
+        battle.setVisible(true);
+
         if(m.isDead()){
             hero.gainExp(m.getExpPoint());
             victor.add(m);
@@ -110,8 +107,7 @@ public class MapController{
 
         if(hero.isDead()){
             // Game Over
-            Game.getInstance().setContentPane(new GameOver().getGameOverPanel());
-
+            game.setContentPane(new GameOver().getGameOverPanel());
         }
     }
 
@@ -134,11 +130,17 @@ public class MapController{
         monsterAndStuff.remove(p);
     }
 
-    public static Hero getHero(){ return hero;}
+    public static Hero getHero(){
+        return hero;
+    }
 
-    public static LinkedList<Prototype> getMonsterAndStuff(){return monsterAndStuff;}
+    public static LinkedList<Prototype> getMonsterAndStuff(){
+        return monsterAndStuff;
+    }
 
-    public static Dungeon getDungeon(){return dungeon;}
+    public static Dungeon getDungeon(){
+        return dungeon;
+    }
 
     public static void signal(){
         synchronized (LOCK){

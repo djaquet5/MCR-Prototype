@@ -25,8 +25,8 @@ public class Dungeon {
             }
         }
 
-        this.x = x;
-        this.y = y;
+        this.x = sizeX;
+        this.y = sizeY;
     }
 
     public Dungeon(int[][] cellConfig) {
@@ -79,15 +79,21 @@ public class Dungeon {
 
     public ReachableCell getRandomAdjacentReachableCell(Cell rc){
         LinkedList<ReachableCell> reachableCells = new LinkedList<>();
+
         if(isReachable(rc.getPosX(), rc.getPosY() - 1))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX()][rc.getPosY() - 1]);
+
         if(isReachable(rc.getPosX(), rc.getPosY() + 1))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX()][rc.getPosY() + 1]);
+
         if(isReachable(rc.getPosX() - 1, rc.getPosY()))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX() - 1][rc.getPosY()]);
+
         if(isReachable(rc.getPosX() + 1, rc.getPosY()))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX() + 1][rc.getPosY()]);
+
         Random rand = new Random();
+
         return reachableCells.get(rand.nextInt(reachableCells.size()));
     }
 
