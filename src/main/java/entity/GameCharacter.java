@@ -188,4 +188,9 @@ public abstract class GameCharacter implements Prototype {
         setPosition(cell);
         MapController.enterToGame(this);
     }
+
+    @Override
+    public String toString(){
+        return getClass().getSimpleName();
+    }
 }

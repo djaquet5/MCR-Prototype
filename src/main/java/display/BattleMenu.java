@@ -34,7 +34,6 @@ public class BattleMenu extends Thread {
     private String info;
 
     public BattleMenu(Monster monster, Hero hero){
-        System.out.println("Battle menu");
         this.monster = monster;
         this.hero = hero;
 
@@ -46,8 +45,8 @@ public class BattleMenu extends Thread {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                info += BattleController.attack(hero, monster);
-                notify();
+                info = BattleController.attack(hero, monster);
+                updateInfo();
             }
 
             @Override
@@ -72,8 +71,8 @@ public class BattleMenu extends Thread {
         comboBoxMagic.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                info += BattleController.castSpell(hero, (Spell) comboBoxMagic.getSelectedItem(), monster) + "\n";
-                notify();
+                info = BattleController.castSpell(hero, (Spell) comboBoxMagic.getSelectedItem(), monster) + "\n";
+                movement();
             }
         });
 
@@ -83,26 +82,11 @@ public class BattleMenu extends Thread {
         comboBoxObject.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                info += BattleController.useItem(hero, ((Map.Entry<Item, Integer>) Objects.requireNonNull(comboBoxObject.getSelectedItem())).getKey()) + "\n";
-                notify();
+                info = BattleController.useItem(hero, ((Map.Entry<Item, Integer>) Objects.requireNonNull(comboBoxObject.getSelectedItem())).getKey()) + "\n";
+                movement();
             }
         });
         info = "A wild " + monster + " appear!";
-        updateInfo();
-        battleRound();
-    }
-
-    private synchronized void battleRound(){
-        while(monster.isDead() || hero.isDead()){
-            info = monster.randomMove(hero);
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            updateInfo();
-        }
-        MapController.signal();
     }
 
     private void updateInfo(){
@@ -111,6 +95,14 @@ public class BattleMenu extends Thread {
         hpMonsterLabel.setText("" + monster.getHp() + "/" + monster.getMaxHp());
         mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
         infoLabel.setText(info);
+    }
+
+    private void movement(){
+        info += monster.randomMove(hero);
+        updateInfo();
+        if(monster.isDead() || hero.isDead()){
+
+        }
     }
 
     public JPanel getBattlePanel(){

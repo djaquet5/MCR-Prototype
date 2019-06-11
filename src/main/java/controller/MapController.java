@@ -17,7 +17,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.LinkedList;
 
-public class MapController{
+public class MapController extends Thread{
     private static int turn = 1;
     private static Dungeon dungeon;
 
@@ -90,14 +90,14 @@ public class MapController{
 
         JFrame battle = new JFrame("Battle");
         battle.setSize(650, 480);
-        battle.add(new BattleMenu(m, hero).getBattlePanel());
+        BattleMenu menu = new BattleMenu(m, hero);
+        battle.add(menu.getBattlePanel());
         battle.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 game.setEnabled(true);
             }
         });
-
         battle.setVisible(true);
 
         if(m.isDead()){
