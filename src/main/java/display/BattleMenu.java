@@ -8,10 +8,7 @@ import magic.Spell;
 import stuff.Item;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.Map;
 import java.util.Objects;
 
@@ -45,8 +42,8 @@ public class BattleMenu extends Thread {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                info = BattleController.attack(hero, monster);
-                updateInfo();
+                info = BattleController.attack(hero, monster) + "\n";
+                movement();
             }
 
             @Override
@@ -62,7 +59,7 @@ public class BattleMenu extends Thread {
             public void mouseExited(MouseEvent mouseEvent) {}
         });
 
-        magicLabel.setText("Throw magic");
+        magicLabel.setText("Cast magic");
         useLabel.setText("Use item");
 
         for(Spell spell : hero.getSpellSlots()){
@@ -87,6 +84,7 @@ public class BattleMenu extends Thread {
             }
         });
         info = "A wild " + monster + " appear!";
+        updateInfo();
     }
 
     private void updateInfo(){
@@ -95,13 +93,19 @@ public class BattleMenu extends Thread {
         hpMonsterLabel.setText("" + monster.getHp() + "/" + monster.getMaxHp());
         mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
         infoLabel.setText(info);
+        System.out.println(info);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void movement(){
         info += monster.randomMove(hero);
         updateInfo();
         if(monster.isDead() || hero.isDead()){
-
+            SwingUtilities.getWindowAncestor(battlePanel).dispose();
         }
     }
 

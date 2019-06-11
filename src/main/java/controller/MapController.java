@@ -90,14 +90,14 @@ public class MapController extends Thread{
 
         JFrame battle = new JFrame("Battle");
         battle.setSize(650, 480);
-        BattleMenu menu = new BattleMenu(m, hero);
-        battle.add(menu.getBattlePanel());
+        battle.add(new BattleMenu(m, hero).getBattlePanel());
         battle.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 game.setEnabled(true);
             }
         });
+        battle.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         battle.setVisible(true);
 
         if(m.isDead()){
