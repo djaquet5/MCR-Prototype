@@ -17,16 +17,9 @@ public class MapController{
     private static int turn = 1;
     private static Dungeon dungeon;
 
-    private static LinkedList<Prototype> monsterAndStuff;
-    private static LinkedList<Prototype> victor;
-    private static LinkedList<Prototype> newMonsters;
-
-    static {
-        monsterAndStuff = new LinkedList<>();
-        victor = new LinkedList<>();
-        newMonsters = new LinkedList<>();
-    }
-
+    private static LinkedList<Prototype> monsterAndStuff = new LinkedList<>();
+    private static LinkedList<Prototype> victor = new LinkedList<>();
+    private static LinkedList<Prototype> newMonsters = new LinkedList<>();
     private static Hero hero;
 
     public MapController(Hero hero, Dungeon dungeon){
