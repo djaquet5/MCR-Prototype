@@ -1,7 +1,6 @@
 package display;
 
 import controller.BattleController;
-import controller.MapController;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import magic.Spell;
@@ -65,23 +64,17 @@ public class BattleMenu extends Thread {
         for(Spell spell : hero.getSpellSlots()){
             comboBoxMagic.addItem(spell);
         }
-        comboBoxMagic.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                info = BattleController.castSpell(hero, (Spell) comboBoxMagic.getSelectedItem(), monster) + "\n";
-                movement();
-            }
+        comboBoxMagic.addActionListener(actionEvent -> {
+            info = BattleController.castSpell(hero, (Spell) comboBoxMagic.getSelectedItem(), monster) + "\n";
+            movement();
         });
 
         for(Map.Entry<Item, Integer> item : hero.getInventory().entrySet()){
             comboBoxObject.addItem(item);
         }
-        comboBoxObject.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                info = BattleController.useItem(hero, ((Map.Entry<Item, Integer>) Objects.requireNonNull(comboBoxObject.getSelectedItem())).getKey()) + "\n";
-                movement();
-            }
+        comboBoxObject.addActionListener(actionEvent -> {
+            info = BattleController.useItem(hero, ((Map.Entry<Item, Integer>) Objects.requireNonNull(comboBoxObject.getSelectedItem())).getKey()) + "\n";
+            movement();
         });
         info = "A wild " + monster + " appear!";
         updateInfo();
