@@ -16,17 +16,24 @@ public class MapController{
     private static Dungeon dungeon;
 
     private static LinkedList<Prototype> monsterAndStuff;
+    private static LinkedList<Prototype> victor;
+    private static LinkedList<Prototype> newMonsters;
 
     static {
         monsterAndStuff = new LinkedList<>();
+        victor = new LinkedList<>();
+        newMonsters = new LinkedList<>();
     }
 
-    ;
     private static Hero hero;
 
     public MapController(Hero hero, Dungeon dungeon){
         this.hero = hero;
         this.dungeon = dungeon;
+        for(Prototype p : newMonsters){
+            monsterAndStuff.add(p);
+        }
+        newMonsters.clear();
     }
 
     public static int getTurn(){
@@ -49,30 +56,48 @@ public class MapController{
                  * Les monstres bougent
                  */
                 ((Monster) p).interactionDonjon(dungeon);
-                if(hero.getPosition() == ((Monster) p).getPosition()){
+                if(hero.getPosition() == p.getPosition()){
                     /**
                      * Si même case, combat
                      */
                     battle(p);
                 }
-            }else if(p instanceof Item && hero.getPosition() == ((Item) p).getPosition()){
+            }else if(p instanceof Item && hero.getPosition() == p.getPosition()){
                 /**
                  * On ramasse les items sur la même case que nous
                  */
                 hero.addToinventory((Item)p, 1);
-                removeFromGame(p);
+                victor.add(p);
             }
         }
+
+        /**
+         * On supprime les morts
+         */
+        for(Prototype p : victor){
+            removeFromGame(p);
+        }
+        victor.clear();
+
+        /**
+         * On rajoute les monstres
+         */
+        for(Prototype p : newMonsters){
+            monsterAndStuff.add(p);
+        }
+        newMonsters.clear();
+
         ++turn;
     }
 
     public static void battle(Prototype p){
+        System.out.println("Battle");
         /**
          * On combat
          */
         if(((Monster) p).isDead()){
             hero.gainExp(((Monster) p).getExpPoint());
-            removeFromGame(p);
+            victor.add(p);
         }
         if(hero.isDead()){
             /**
@@ -95,8 +120,7 @@ public class MapController{
     }
 
     public static void enterToGame(Prototype p){
-        System.out.println(monsterAndStuff.size());
-        monsterAndStuff.add(p);
+        newMonsters.add(p);
     }
 
     public static void removeFromGame(Prototype p){
