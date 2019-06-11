@@ -32,7 +32,6 @@ public class Slime extends Monster{
         if(MapController.getTurn() % 13 == 0){
             Prototype slime = this.clonePrototype();
             slime.initialize( dj.getRandomAdjacentReachableCell(this.getPosition()));
-
         }else{
             super.interactionDonjon(dj);
         }

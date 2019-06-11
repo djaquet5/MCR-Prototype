@@ -43,25 +43,25 @@ public class Dungeon {
                     this.cells[i][j] = MakeReachableCell(i, j);
                     switch (cellConfig[i][j]) {
                         case 2:
-                            MapController.enterToGame(MakeSlime((ReachableCell) this.cells[i][j]));
+                            MakeSlime((ReachableCell) this.cells[i][j]);
                             break;
                         case 3:
-                            MapController.enterToGame(MakeSquid((ReachableCell) this.cells[i][j]));
+                            MakeSquid((ReachableCell) this.cells[i][j]);
                             break;
                         case 4:
-                            MapController.enterToGame(MakeOctopus((ReachableCell) this.cells[i][j]));
+                            MakeOctopus((ReachableCell) this.cells[i][j]);
                             break;
                         case 5:
-                            MapController.enterToGame(MakeSummoner((ReachableCell) this.cells[i][j]));
+                            MakeSummoner((ReachableCell) this.cells[i][j]);
                             break;
                         case 6:
-                            MapController.enterToGame(MakeKraken((ReachableCell) this.cells[i][j]));
+                            MakeKraken((ReachableCell) this.cells[i][j]);
                             break;
                         case 7:
-                            MapController.enterToGame(MakePotion((ReachableCell) this.cells[i][j]));
+                            MakePotion((ReachableCell) this.cells[i][j]);
                             break;
                         case 8:
-                            MapController.enterToGame(MakeEther((ReachableCell) this.cells[i][j]));
+                            MakeEther((ReachableCell) this.cells[i][j]);
                             break;
                     }
                 }
