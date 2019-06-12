@@ -19,6 +19,7 @@ public class Game extends JFrame {
     }
 
     public void changePanel(JPanel panel){
+        getContentPane().removeAll();
         setContentPane(panel);
         repaint();
         revalidate();
