@@ -10,11 +10,8 @@ import maze.Dungeon;
 import maze.ReachableCell;
 import stuff.Item;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 
 public class MapController extends Thread{
@@ -68,7 +65,7 @@ public class MapController extends Thread{
         for(Monster monster: monsters) {
             // Move monsters every 3 turns
             if(turn % 3 == 0) {
-                monster.interactionDonjon(dungeon);
+                monster.dungeonInteraction(dungeon);
             }
 
             if(hero.getPosition() == monster.getPosition()){
