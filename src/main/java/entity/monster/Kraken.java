@@ -8,8 +8,6 @@ import stuff.Ether;
 import stuff.Item;
 import stuff.Potion;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 
 public class Kraken extends Monster {
@@ -19,8 +17,8 @@ public class Kraken extends Monster {
         spellSlots.add(new Spell("Frozzen Breath", 88, 20));
         spellSlots.add(new Spell("Bubble Cramble", 33, 3));
         spellSlots.add(new Spell("Death Anchor", 55, 10));
-        inventory.put(new Ether(), 2);
-        inventory.put(new Potion(), 3);
+        addToInventory(new Ether(), 2);
+        addToInventory(new Potion(), 3);
     }
 
     @Override
@@ -28,20 +26,15 @@ public class Kraken extends Monster {
         Random rand = new Random();
         switch (rand.nextInt(10)){
             case 0:
-                if(inventory.entrySet().iterator().next().getValue() > 0) {
-                    return BattleController.useItem(this, inventory.entrySet().iterator().next().getKey());
-                }
             case 1:
+                if(inventory.size() > 0) {
+                    return BattleController.useItem(this, inventory.get(rand.nextInt(inventory.size())));
+                }
             case 2:
             case 3:
             case 4:
-                return BattleController.castSpell(this, getRandomSpell(), hero);
             case 5:
-                Iterator<Map.Entry<Item, Integer>> items = inventory.entrySet().iterator();
-                items.next();
-                if(items.next().getValue() > 0) {
-                    return BattleController.useItem(this, (inventory.entrySet().iterator().next()).getKey());
-                }
+                return BattleController.castSpell(this, getRandomSpell(), hero);
             default:
                 return BattleController.attack(this, hero);
         }

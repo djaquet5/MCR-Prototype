@@ -21,11 +21,7 @@ public class BattleController {
     }
 
     public static String useItem(GameCharacter user, Item item) {
-        if(!user.hasInInventory(item)) {
-            return item + " is not in the inventory list !";
-        }
-
-        item.use(user);
+        user.useItem(item);
         return item + " used !";
     }
 }

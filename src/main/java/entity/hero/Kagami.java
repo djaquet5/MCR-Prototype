@@ -14,8 +14,8 @@ public class Kagami extends Hero {
         spellSlots.add(new Spell("Rage", 70, 15));
         spellSlots.add(new Spell("Magnet Pulse", 80, 20));
         spellSlots.add(new Spell("Exploooooooooosion", 40000, 666));
-        inventory.put(new Potion(), 1);
-        inventory.put(new Ether(), 1);
+        addToInventory(new Potion(), 1);
+        addToInventory(new Ether(), 1);
     }
 
     @Override

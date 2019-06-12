@@ -16,7 +16,7 @@ public class Magus extends Hero {
         spellSlots.add(new Spell("Gravity", 180, 40));
         spellSlots.add(new Spell("Meteor", 260, 100));
         spellSlots.add(new Spell("Exploooooooooosion", 40000, 666));
-        inventory.put(new Ether(), 2);
+        addToInventory(new Ether(), 2);
     }
 
     @Override

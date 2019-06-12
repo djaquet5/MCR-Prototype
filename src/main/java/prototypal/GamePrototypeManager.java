@@ -53,46 +53,47 @@ public class GamePrototypeManager {
         return endCell;
     }
 
-    public static Item MakePotion(ReachableCell cell) {
+    public static void MakePotion(ReachableCell cell) {
         Potion p = (Potion) prototypePotion.clonePrototype();
         p.initialize(cell);
-        return p;
     }
 
-    public static Item MakeEther(ReachableCell cell){
+    public static void MakeEther(ReachableCell cell){
         Ether e = (Ether) prototypeEther.clonePrototype();
         e.initialize(cell);
-        return e;
     }
 
-    public static Monster MakeSlime(ReachableCell cell){
+    public static Item getPotion(){
+        return prototypePotion;
+    }
+
+    public static Item getEther(){
+        return prototypeEther;
+    }
+
+    public static void MakeSlime(ReachableCell cell){
         Slime s = (Slime)prototypeSlime.clonePrototype();
         s.initialize(cell);
-        return s;
     }
 
-    public static Monster MakeSquid(ReachableCell cell){
+    public static void MakeSquid(ReachableCell cell){
         Squid s = (Squid)prototypeSquid.clonePrototype();
         s.initialize(cell);
-        return s;
     }
 
-    public static Monster MakeOctopus(ReachableCell cell){
+    public static void MakeOctopus(ReachableCell cell){
         Octopus o = (Octopus)prototypeOctopus.clonePrototype();
         o.initialize(cell);
-        return o;
     }
 
-    public static Monster MakeKraken(ReachableCell cell){
+    public static void MakeKraken(ReachableCell cell){
         Kraken k = (Kraken)prototypeKraken.clonePrototype();
         k.initialize(cell);
-        return k;
     }
 
-    public static Monster MakeSummoner(ReachableCell cell){
+    public static void MakeSummoner(ReachableCell cell){
         Summoner s = (Summoner)prototypeSummoner.clonePrototype();
         s.initialize(cell);
-        return s;
     }
 
 }

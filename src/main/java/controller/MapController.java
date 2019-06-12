@@ -13,6 +13,7 @@ import stuff.Item;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class MapController extends Thread{
     private static int turn = 1;
@@ -43,6 +44,7 @@ public class MapController extends Thread{
     }
 
     public static void move(ReachableCell cell){
+
         // move hero
         hero.setPosition(cell);
 
@@ -77,7 +79,7 @@ public class MapController extends Thread{
         for(Item item: items) {
             if(hero.getPosition() == item.getPosition()) {
                 // Collect item if on same cell
-                hero.addToinventory((Item)item, 1);
+                hero.addToInventory(item, 1);
                 itemGB.add(item);
             }
         }
