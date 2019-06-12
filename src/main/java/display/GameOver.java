@@ -1,7 +1,7 @@
 package display;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalComboBoxButton;
+import java.awt.*;
 import java.awt.event.*;
 
 public class GameOver {
@@ -34,4 +34,20 @@ public class GameOver {
     public JPanel getGameOverPanel(){
         return gameOverPanel;
     }
+
+    private void setGameOverTextArea(String message) {
+        gameOverTextArea.setText(message);
+    }
+
+    private void setBackGround(Color color) {
+        gameOverTextArea.setBackground(color);
+        gameOverPanel.setBackground(color);
+    }
+
+    public void displayWin() {
+        setBackGround(new Color(255,105,180));
+        setGameOverTextArea("You win!");
+    }
+
+
 }
