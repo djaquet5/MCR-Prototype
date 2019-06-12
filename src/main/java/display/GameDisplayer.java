@@ -10,7 +10,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Singleton Map displayer of the game
+ */
 public class GameDisplayer extends JPanel implements ActionListener {
+
+    private static GameDisplayer instance;
 
     private Cell startCell;
 
@@ -25,8 +30,6 @@ public class GameDisplayer extends JPanel implements ActionListener {
     private Image HERO;
 
     private Dungeon dungeon;
-
-    private static GameDisplayer instance;
 
     private GameDisplayer() {
         init();
@@ -71,6 +74,10 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * First draw the dungeon, then monsters, and finally the times
+     * @param g2d
+     */
     private void drawDungeon(Graphics2D g2d) {
         for(int i = 0; i < dungeon.getDimension(); i++) {
             g2d.drawLine(0, i * cellSize, getWidth(), i * cellSize);
@@ -85,7 +92,15 @@ public class GameDisplayer extends JPanel implements ActionListener {
                         cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
             }
         }
-        for(Prototype p : MapController.getMonsterAndStuff()){
+        for(Prototype p : MapController.getMonsters()){
+            if(p.getPosition().getIsDiscovered()) {
+                Image mOrS = new ImageIcon(p.getDisplayImage()).getImage();
+                g2d.drawImage(mOrS, cellOffset + p.getPosition().getPosX() * cellSize,
+                        cellOffset + cellOffset + p.getPosition().getPosY() * cellSize, imageSize, imageSize, this);
+            }
+        }
+
+        for(Prototype p : MapController.getItems()){
             if(p.getPosition().getIsDiscovered()) {
                 Image mOrS = new ImageIcon(p.getDisplayImage()).getImage();
                 g2d.drawImage(mOrS, cellOffset + p.getPosition().getPosX() * cellSize,

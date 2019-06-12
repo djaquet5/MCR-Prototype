@@ -186,7 +186,6 @@ public abstract class GameCharacter implements Prototype {
 
     public void initialize(Cell cell) {
         setPosition(cell);
-        MapController.enterToGame(this);
     }
 
     @Override

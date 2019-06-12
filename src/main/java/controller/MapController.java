@@ -2,28 +2,27 @@ package controller;
 
 import display.BattleMenu;
 import display.Game;
-import display.GameDisplayer;
 import display.GameOver;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import maze.Dungeon;
 import maze.ReachableCell;
-import prototypal.Prototype;
 import stuff.Item;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.LinkedList;
 
 public class MapController extends Thread{
     private static int turn = 1;
     private static Dungeon dungeon;
 
-    private static LinkedList<Prototype> monsterAndStuff = new LinkedList<>();
-    private static LinkedList<Prototype> victor = new LinkedList<>();
-    private static LinkedList<Prototype> newMonsters = new LinkedList<>();
+    private static LinkedList<Monster> monsters = new LinkedList<>();
+    private static LinkedList<Item> items = new LinkedList<>();
+    private static LinkedList<Monster> monstersGB = new LinkedList<>();
+    private static LinkedList<Item> itemGB = new LinkedList<>();
+    private static LinkedList<Monster> newMonsters = new LinkedList<>();
     private static Hero hero;
 
     private static final Object LOCK = new Object() {};
@@ -35,8 +34,8 @@ public class MapController extends Thread{
         this.dungeon = dungeon;
         this.game = Game.getInstance();
 
-        for(Prototype p : newMonsters){
-            monsterAndStuff.add(p);
+        for(Monster p : newMonsters){
+            monsters.add(p);
         }
         newMonsters.clear();
     }
@@ -46,38 +45,43 @@ public class MapController extends Thread{
     }
 
     public static void move(ReachableCell cell){
-        // On bouge
+        // move hero
         hero.setPosition(cell);
 
-        // On découvre les cases autour de nous
+        //dicover cells
         discoverCells();
+        processTurn();
+    }
 
-        for(Prototype p : monsterAndStuff){
-            if(p instanceof Monster){
-                // Les monstres bougent
-                ((Monster) p).interactionDonjon(dungeon);
+    private static void processTurn() {
+        for(Monster monster: monsters) {
+            // Move monsters every 3 turns
+            if(turn % 3 == 0) {
+                monster.interactionDonjon(dungeon);
+            }
 
-                if(hero.getPosition() == p.getPosition()){
-                    // Si même case, combat
-                    battle((Monster) p);
-                }
-            } else if(p instanceof Item && hero.getPosition() == p.getPosition()){
-                // On ramasse les items sur la même case que nous
-                hero.addToinventory((Item)p, 1);
-                victor.add(p);
+            if(hero.getPosition() == monster.getPosition()){
+                // If same cell initiate battle
+                battle(monster);
             }
         }
 
-        // On supprime les morts
-        for(Prototype p : victor){
-            removeFromGame(p);
+        for(Item item: items) {
+            if(hero.getPosition() == item.getPosition()) {
+                // Collect item if on same cell
+                hero.addToinventory((Item)item, 1);
+                itemGB.add(item);
+            }
         }
-        victor.clear();
 
-        // On rajoute les monstres
-        for(Prototype p : newMonsters){
-            monsterAndStuff.add(p);
-        }
+        // clean up at the end of every turn
+        removeOldMonstersFromGame();
+        removeOldItemsFromGame();
+        monstersGB.clear();
+        itemGB.clear();
+
+        // Add monsters
+        monsters.addAll(newMonsters);
         newMonsters.clear();
 
         ++turn;
@@ -102,7 +106,7 @@ public class MapController extends Thread{
 
         if(m.isDead()){
             hero.gainExp(m.getExpPoint());
-            victor.add(m);
+            monstersGB.add(m);
         }
 
         if(hero.isDead()){
@@ -122,20 +126,28 @@ public class MapController extends Thread{
         }
     }
 
-    public static void enterToGame(Prototype p){
+    public static void enterMonsterToGame(Monster p){
         newMonsters.add(p);
     }
 
-    public static void removeFromGame(Prototype p){
-        monsterAndStuff.remove(p);
+    private static void removeOldMonstersFromGame() {
+        monsters.removeAll(monstersGB);
+    }
+
+    private static void removeOldItemsFromGame() {
+        items.removeAll(itemGB);
     }
 
     public static Hero getHero(){
         return hero;
     }
 
-    public static LinkedList<Prototype> getMonsterAndStuff(){
-        return monsterAndStuff;
+    public static LinkedList<Monster> getMonsters(){
+        return monsters;
+    }
+
+    public static LinkedList<Item> getItems() {
+        return items;
     }
 
     public static Dungeon getDungeon(){
