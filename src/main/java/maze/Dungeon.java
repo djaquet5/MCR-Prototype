@@ -13,21 +13,10 @@ import static prototypal.GameFactory.*;
  */
 public class Dungeon {
     private Cell[][] cells;
+    private StartCell startCell;
+    private EndCell endCell;
     private int x;
     private int y;
-
-    public Dungeon(int sizeX, int sizeY) {
-        cells = new Cell[sizeX][sizeY];
-
-        for(int i = 0; i < sizeX; ++i){
-            for(int j = 0; j < sizeY; ++j){
-                cells[i][j] = MakeReachableCell(i, j);
-            }
-        }
-
-        this.x = sizeX;
-        this.y = sizeY;
-    }
 
     public Dungeon(int[][] cellConfig) {
         x = cellConfig.length;
@@ -39,6 +28,12 @@ public class Dungeon {
             for(int j = 0; j < y; j++) {
                 if(cellConfig[i][j] == 0) {
                     this.cells[i][j] = MakeEmptyCell(i, j);
+                }  else if(cellConfig[i][j] == 9) {
+                    this.startCell = MakeStartCell(i, j);
+                    this.cells[i][j] = this.startCell;
+                } else if(cellConfig[i][j] == 10) {
+                    this.endCell = MakeEndCell(i, j);
+                    this.cells[i][j] = this.endCell;
                 } else {
                     this.cells[i][j] = MakeReachableCell(i, j);
                     switch (cellConfig[i][j]) {
@@ -111,7 +106,7 @@ public class Dungeon {
 
     public static Dungeon generate10x10Dungeon() {
         int[][] cells = new int[][]{
-                {1, 7, 7, 1, 0, 0, 0, 1, 7, 8},
+                {9, 7, 7, 1, 0, 0, 0, 1, 7, 8},
                 {1, 2, 1, 1, 0, 0, 1, 1, 7, 8},
                 {7, 1, 8, 1, 0, 0, 1, 0, 0, 0},
                 {1, 1, 1, 2, 0, 0, 3, 0, 0, 0},
@@ -120,7 +115,7 @@ public class Dungeon {
                 {0, 1, 0, 0, 0, 2, 0, 1, 1, 1},
                 {0, 4, 1, 1, 1, 1, 0, 1, 1, 1},
                 {0, 1, 1, 7, 1, 1, 0, 1, 1, 6},
-                {0, 7, 1, 5, 8, 1, 0, 1, 6, 0}
+                {0, 7, 1, 5, 8, 1, 0, 10, 6, 0}
         };
 
         return new Dungeon(cells);
@@ -132,5 +127,13 @@ public class Dungeon {
 
     public int getMaxY(){
         return y;
+    }
+
+    public StartCell getStartCell() {
+        return startCell;
+    }
+
+    public EndCell getEndCell() {
+        return endCell;
     }
 }

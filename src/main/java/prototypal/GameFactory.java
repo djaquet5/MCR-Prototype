@@ -8,6 +8,9 @@ public class GameFactory {
     //Cell
     private final static EmptyCell prototypeEmptyCell = new EmptyCell();
     private final static ReachableCell prototypeReachableCell = new ReachableCell();
+    private final static StartCell prototypeStartCell = new StartCell();
+    private final static EndCell prototypeEndCell = new EndCell();
+
 
 
     //Item
@@ -32,10 +35,22 @@ public class GameFactory {
         return emptyCell;
     }
 
-    public static Cell MakeReachableCell(int x, int y){
-        Cell reachableCell = (ReachableCell) prototypeReachableCell.cloneMaze();
+    public static ReachableCell MakeReachableCell(int x, int y){
+        ReachableCell reachableCell = (ReachableCell) prototypeReachableCell.cloneMaze();
         reachableCell.initialize(x, y);
         return reachableCell;
+    }
+
+    public static StartCell MakeStartCell(int x, int y){
+        StartCell startCell = (StartCell) prototypeStartCell.cloneMaze();
+        startCell.initialize(x, y);
+        return startCell;
+    }
+
+    public static EndCell MakeEndCell(int x, int y){
+        EndCell endCell = (EndCell) prototypeEndCell.cloneMaze();
+        endCell.initialize(x, y);
+        return endCell;
     }
 
     public static Item MakePotion(ReachableCell cell) {
