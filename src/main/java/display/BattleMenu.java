@@ -88,11 +88,6 @@ public class BattleMenu extends Thread {
         mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
         infoLabel.setText(info);
         System.out.println(info);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private void movement(){

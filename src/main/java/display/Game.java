@@ -1,11 +1,8 @@
 package display;
 
 import controller.MapController;
-import maze.ReachableCell;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Game extends JFrame {
 
@@ -32,5 +29,9 @@ public class Game extends JFrame {
             game = new Game();
         }
         return game;
+    }
+
+    public static void resetGame(){
+        game = null;
     }
 }

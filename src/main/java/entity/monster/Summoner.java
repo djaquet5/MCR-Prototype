@@ -59,8 +59,8 @@ public class Summoner extends Monster {
     }
 
     @Override
-    public void interactionDonjon(Dungeon dj){
-        if(MapController.getTurn() % 5 == 0){
+    public void dungeonInteraction(Dungeon dj){
+        if(MapController.getTurn() % 6 == 0){
             Random rand = new Random();
             Monster monstre = (Monster) monsters.get(rand.nextInt(monsters.size())).clonePrototype();
             monstre.initialize(dj.getRandomAdjacentReachableCell(this.getPosition()));
