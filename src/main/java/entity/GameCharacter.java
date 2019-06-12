@@ -135,7 +135,6 @@ public abstract class GameCharacter implements Prototype {
         for(int i = 0; i < amount; ++i) {
             inventory.add(item);
         }
-
     }
 
     public void useItem(Item item){

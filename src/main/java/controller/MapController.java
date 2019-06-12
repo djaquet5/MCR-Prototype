@@ -14,8 +14,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-// TODO: Add gameEnabled boolean
-
 public class MapController extends Thread{
     private static int turn = 1;
     private static Dungeon dungeon;
@@ -45,12 +43,6 @@ public class MapController extends Thread{
 
         // move hero
         hero.setPosition(cell);
-        if(cell == dungeon.getEndCell()) {
-            GameOver gameOver = new GameOver();
-            gameOver.displayWin();
-            game.changePanel(gameOver.getGameOverPanel());
-            // TODO: finish game here
-        }
 
         //dicover cells
         discoverCells();
