@@ -7,21 +7,21 @@ import stuff.Item;
 public class BattleController {
 
     public static String attack(GameCharacter attacker, GameCharacter target) {
-        return attacker.attack(target) + " damage was inflicted !";
+        return attacker + " dealt " + attacker.attack(target) + " damage to " + target + " ! ";
     }
 
     public static String castSpell(GameCharacter speller, Spell spell, GameCharacter target) {
         int damage = speller.castMagic(target, spell);
 
         if(damage == -1) {
-            return spell + " not casted !";
+            return speller + " couldn't cast " + spell + " ! ";
         }
 
-        return damage + " damage was inflicted !";
+        return speller + " dealt " + damage + " damage to " + target + " ! ";
     }
 
     public static String useItem(GameCharacter user, Item item) {
         user.useItem(item);
-        return item + " used !";
+        return user + " used " + item + " ! ";
     }
 }

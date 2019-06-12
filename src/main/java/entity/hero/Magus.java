@@ -23,4 +23,24 @@ public class Magus extends Hero {
     public Prototype clonePrototype() {
         return new Magus();
     }
+
+    @Override
+    public String getDisplayImageDown() {
+        return "src/Characters/DM3/face-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageUp() {
+        return "src/Characters/DM3/back-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageRight() {
+        return "src/Characters/DM3/right-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageLeft() {
+        return "src/Characters/DM3/left-stand.png";
+    }
 }

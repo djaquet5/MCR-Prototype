@@ -8,6 +8,8 @@ import magic.Spell;
 import stuff.Item;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Map;
 import java.util.Objects;
@@ -34,8 +36,22 @@ public class BattleMenu extends Thread {
         this.monster = monster;
         this.hero = hero;
 
-        ImageIcon icon = new ImageIcon(monster.getDisplayImage());
-        pictureLabel.setDisabledIcon(icon);
+        ImageIcon icon = new ImageIcon(monster.getDisplayImagePath());
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(600, 600,  java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        pictureLabel.setIcon(icon);
+
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+        hpHeroLabel.setForeground(Color.GREEN);
+        mpHeroLabel.setForeground(Color.BLUE);
+        hpMonsterLabel.setForeground(Color.GREEN);
+        mpMonsterLabel.setForeground(Color.BLUE);
+
+        hpHeroLabel.setBorder(border);
+        mpHeroLabel.setBorder(border);
+        hpMonsterLabel.setBorder(border);
+        mpMonsterLabel.setBorder(border);
 
         attackLabel.setText("Attack");
         attackLabel.addMouseListener(new MouseListener() {
@@ -81,15 +97,15 @@ public class BattleMenu extends Thread {
             }
             movement();
         });
-        info = "A wild " + monster + " appear!";
+        info = "A wild " + monster + " appears ! ";
         updateInfo();
     }
 
     private void updateInfo(){
-        hpHeroLabel.setText("" + hero.getHp() + "/" + hero.getMaxHp());
-        mpHeroLabel.setText("" + hero.getMp() + "/" + hero.getMaxMp());
-        hpMonsterLabel.setText("" + monster.getHp() + "/" + monster.getMaxHp());
-        mpMonsterLabel.setText("" + monster.getMp() + "/" + monster.getMaxMp());
+        hpHeroLabel.setText("HP : " + hero.getHp() + " / " + hero.getMaxHp());
+        mpHeroLabel.setText("MP : " + hero.getMp() + " / " + hero.getMaxMp());
+        hpMonsterLabel.setText("HP : " + monster.getHp() + " / " + monster.getMaxHp());
+        mpMonsterLabel.setText("MP : " + monster.getMp() + " / " + monster.getMaxMp());
         infoLabel.setText(info);
         System.out.println(info);
     }

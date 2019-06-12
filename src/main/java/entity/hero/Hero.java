@@ -90,4 +90,12 @@ public abstract class Hero extends GameCharacter {
     public double getWisdom() {
         return wisdom;
     }
+
+    public abstract String getDisplayImageDown();
+
+    public abstract String getDisplayImageUp();
+
+    public abstract String getDisplayImageRight();
+
+    public abstract String getDisplayImageLeft();
 }
