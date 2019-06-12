@@ -18,29 +18,29 @@ public class Game extends JFrame {
         setContentPane(new MainMenu().getMainPanel());
         addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent keyEvent) {
-                if ('s' == keyEvent.getKeyChar()) {
+            public void keyPressed(KeyEvent keyEvent) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN || keyEvent.getKeyCode() == KeyEvent.VK_S) {
                     System.out.println("Moved down");
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() + 1)){
                         MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
                                 MapController.getHero().getPosition().getPosY() + 1));
                     }
                 }
-                if ('w' == keyEvent.getKeyChar()) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_UP || keyEvent.getKeyCode() == KeyEvent.VK_W) {
                     System.out.println("Moved up");
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() - 1)){
                         MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
                                 MapController.getHero().getPosition().getPosY() - 1));
                     }
                 }
-                if ('d' == keyEvent.getKeyChar()) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT || keyEvent.getKeyCode() == KeyEvent.VK_D) {
                     System.out.println("Moved right");
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() + 1, MapController.getHero().getPosition().getPosY())){
                         MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() + 1,
                                 MapController.getHero().getPosition().getPosY()));
                     }
                 }
-                if ('a' == keyEvent.getKeyChar()) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT || keyEvent.getKeyCode() == KeyEvent.VK_A) {
                     System.out.println("Moved left");
                     if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() - 1, MapController.getHero().getPosition().getPosY())){
                         MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() - 1,
@@ -50,7 +50,7 @@ public class Game extends JFrame {
             }
 
             @Override
-            public void keyPressed(KeyEvent keyEvent) {
+            public void keyTyped(KeyEvent keyEvent) {
 
             }
 
@@ -61,7 +61,6 @@ public class Game extends JFrame {
         });
         setVisible(true);
         pack();
-        game = this;
     }
 
     public void changePanel(JPanel panel){

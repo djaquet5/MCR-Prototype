@@ -1,5 +1,6 @@
 package entity.monster;
 
+import controller.MapController;
 import entity.GameCharacter;
 import entity.hero.Hero;
 import magic.Spell;
@@ -31,6 +32,11 @@ public abstract class Monster extends GameCharacter {
     protected Spell getRandomSpell(){
         Random rand = new Random();
         return spellSlots.get(rand.nextInt(spellSlots.size()));
+    }
+
+    public void initialize(Cell cell) {
+        setPosition(cell);
+        MapController.enterMonsterToGame(this);
     }
 
 }

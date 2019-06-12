@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Main menu
+ */
 public class MainMenu {
     private JTextArea selectYourCharacterTextArea;
     private JButton magusButton;
@@ -16,72 +19,42 @@ public class MainMenu {
     private JPanel mainPanel;
 
     public MainMenu(){
-        magusButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Magus(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(GameDisplayer.getInstance());
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
-        });
-
-        warriorButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Warrior(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(GameDisplayer.getInstance());
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
-        });
-
-        kagamiButton.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(new Kagami(), Dungeon.generate10x10Dungeon());
-                Game.getInstance().changePanel(GameDisplayer.getInstance());
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
-        });
+        magusButton.addMouseListener(getCustomMouseListener(new Magus()));
+        warriorButton.addMouseListener(getCustomMouseListener(new Warrior()));
+        kagamiButton.addMouseListener(getCustomMouseListener(new Kagami()));
     }
 
-    public JPanel getMainPanel(){
+    JPanel getMainPanel(){
         return mainPanel;
+    }
+
+    private MouseListener getCustomMouseListener(Hero hero) {
+        return new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                new MapController(hero, Dungeon.generate10x10Dungeon());
+                Game.getInstance().changePanel(GameDisplayer.getInstance());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+        };
     }
 }
