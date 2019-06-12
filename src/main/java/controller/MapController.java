@@ -51,7 +51,6 @@ public class MapController extends Thread{
             GameOver gameOver = new GameOver();
             gameOver.displayWin();
             game.changePanel(gameOver.getGameOverPanel());
-            // TODO: finish game here
         }
 
         //dicover cells
