@@ -28,12 +28,12 @@ public class Slime extends Monster{
      * @param dj Le donjon en question
      */
     @Override
-    public void interactionDonjon(Dungeon dj){
-        if(MapController.getTurn() % 13 == 0){
+    public void dungeonInteraction(Dungeon dj){
+        if(MapController.getTurn() % 12 == 0){
             Prototype slime = this.clonePrototype();
             slime.initialize( dj.getRandomAdjacentReachableCell(this.getPosition()));
         }else{
-            super.interactionDonjon(dj);
+            super.dungeonInteraction(dj);
         }
     }
 

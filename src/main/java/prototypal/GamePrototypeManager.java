@@ -4,7 +4,7 @@ import entity.monster.*;
 import maze.*;
 import stuff.*;
 
-public class GameFactory {
+public class GamePrototypeManager {
     //Cell
     private final static EmptyCell prototypeEmptyCell = new EmptyCell();
     private final static ReachableCell prototypeReachableCell = new ReachableCell();
@@ -25,7 +25,7 @@ public class GameFactory {
     private final static Summoner prototypeSummoner = new Summoner();
 
 
-    public GameFactory() {
+    public GamePrototypeManager() {
 
     }
 

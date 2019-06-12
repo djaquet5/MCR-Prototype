@@ -1,6 +1,5 @@
 package entity;
 
-import controller.MapController;
 import magic.Spell;
 import maze.Cell;
 import prototypal.Prototype;
@@ -20,19 +19,19 @@ public abstract class GameCharacter implements Prototype {
     private int defence;
     private int magic;
     private int magicDefence;
-    private String displayImage;
+    private String displayImagePath;
     protected List<Spell> spellSlots;
     protected Map<Item, Integer> inventory;
     private Cell position;
 
-    public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImage){
+    public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImagePath){
         this.hp = this.maxHp = hp;
         this.mp = this.maxMp = mp;
         this.attack = attack;
         this.defence = defence;
         this.magic = magic;
         this.magicDefence = magicDefence;
-        this.displayImage = displayImage;
+        this.displayImagePath = displayImagePath;
 
         spellSlots = new ArrayList<Spell>();
         inventory = new HashMap<Item, Integer>();
@@ -87,8 +86,8 @@ public abstract class GameCharacter implements Prototype {
     }
 
     @Override
-    public String getDisplayImage(){
-        return displayImage;
+    public String getDisplayImagePath(){
+        return displayImagePath;
     }
 
     public void setHp(int hp) {
@@ -191,5 +190,9 @@ public abstract class GameCharacter implements Prototype {
     @Override
     public String toString(){
         return getClass().getSimpleName();
+    }
+
+    public void setDisplayImagePath(String displayImage) {
+        this.displayImagePath = displayImage;
     }
 }

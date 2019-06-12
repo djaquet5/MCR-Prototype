@@ -32,7 +32,8 @@ public class MainMenu {
         return new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                new MapController(hero, Dungeon.generate10x10Dungeon());
+                new MapController(hero);
+                MapController.generate10x10Dungeon();
                 Game.getInstance().changePanel(GameDisplayer.getInstance());
             }
 

@@ -23,7 +23,7 @@ public abstract class Item implements Prototype {
     }
 
     @Override
-    public String getDisplayImage(){
+    public String getDisplayImagePath(){
         return image;
     }
 

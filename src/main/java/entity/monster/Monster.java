@@ -18,7 +18,7 @@ public abstract class Monster extends GameCharacter {
         this.expPoint = expPoint;
     }
 
-    public void interactionDonjon(Dungeon dj){
+    public void dungeonInteraction(Dungeon dj){
         Cell rc = dj.getRandomAdjacentReachableCell(getPosition());
         setPosition(rc);
     }

@@ -29,15 +29,15 @@ public abstract class Hero extends GameCharacter {
     }
 
     private void levelUp() {
-        exp -= expToLvl;
+        exp = 0;
         lvl++;
         expToLvl = 100 * (int)Math.pow(2, lvl-1);
-        setMaxHp((int) (getMaxMp() * vitality));
-        setMaxMp((int) (getMaxMp() * mysticism));
-        setAttack((int) (getAttack() * strength));
-        setDefence((int) (getDefence() * constitution));
-        setMagic((int) (getMagic() * intelligence));
-        setMagicDefence((int) (getMagicDefence() * wisdom));
+        setMaxHp(getMaxHp() + (int) (getMaxHp() * vitality));
+        setMaxMp(getMaxMp() + (int) (getMaxMp() * mysticism));
+        setAttack(getAttack() + (int) (getAttack() * strength));
+        setDefence(getDefence() + (int) (getDefence() * constitution));
+        setMagic(getMagic() + (int) (getMagic() * intelligence));
+        setMagicDefence(getMagicDefence() + (int) (getMagicDefence() * wisdom));
 
         setHp(getMaxHp());
         setMp(getMaxMp());
@@ -90,4 +90,12 @@ public abstract class Hero extends GameCharacter {
     public double getWisdom() {
         return wisdom;
     }
+
+    public abstract String getDisplayImageDown();
+
+    public abstract String getDisplayImageUp();
+
+    public abstract String getDisplayImageRight();
+
+    public abstract String getDisplayImageLeft();
 }
