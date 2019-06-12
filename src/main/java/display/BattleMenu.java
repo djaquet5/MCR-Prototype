@@ -22,10 +22,10 @@ public class BattleMenu extends Thread {
     private JLabel mpHeroLabel;
     private JLabel hpMonsterLabel;
     private JLabel mpMonsterLabel;
-    private JLabel attackLabel;
-    private JLabel magicLabel;
-    private JLabel useLabel;
     private JLabel pictureLabel;
+    private JButton attackButton;
+    private JButton magicButton;
+    private JButton useButton;
     private JLabel infoLabel;
     private Monster monster;
     private Hero hero;
@@ -36,7 +36,7 @@ public class BattleMenu extends Thread {
         this.monster = monster;
         this.hero = hero;
 
-        ImageIcon icon = new ImageIcon(monster.getDisplayImage());
+        ImageIcon icon = new ImageIcon(monster.getDisplayImagePath());
         Image image = icon.getImage();
         Image newimg = image.getScaledInstance(600, 600,  java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
@@ -53,8 +53,8 @@ public class BattleMenu extends Thread {
         hpMonsterLabel.setBorder(border);
         mpMonsterLabel.setBorder(border);
 
-        attackLabel.setText("Attack");
-        attackLabel.addMouseListener(new MouseListener() {
+        attackButton.setText("Attack");
+        attackButton.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -75,8 +75,8 @@ public class BattleMenu extends Thread {
             public void mouseExited(MouseEvent mouseEvent) {}
         });
 
-        magicLabel.setText("Cast magic");
-        useLabel.setText("Use item");
+        magicButton.setText("Cast magic");
+        useButton.setText("Use item");
 
         for(Spell spell : hero.getSpellSlots()){
             comboBoxMagic.addItem(spell);
