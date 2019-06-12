@@ -11,7 +11,7 @@ public class Potion extends Item {
 
     @Override
     public void use(GameCharacter gameCharacter){
-        gameCharacter.setHp((int) (gameCharacter.getHp() * 0.5));
+        gameCharacter.modifyHp((int) (gameCharacter.getMaxHp() * 0.5));
     }
 
     @Override

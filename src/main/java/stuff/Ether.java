@@ -11,7 +11,7 @@ public class Ether extends Item {
 
     @Override
     public void use(GameCharacter gameCharacter){
-        gameCharacter.setMp((int) (gameCharacter.getMp() * 0.5));
+        gameCharacter.modifyMp((int) (gameCharacter.getMaxMp() * 0.5));
     }
 
     @Override

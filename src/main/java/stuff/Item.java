@@ -1,5 +1,6 @@
 package stuff;
 
+import controller.MapController;
 import maze.Cell;
 import prototypal.Prototype;
 import entity.GameCharacter;
@@ -34,5 +35,6 @@ public abstract class Item implements Prototype {
     @Override
     public void initialize(Cell cell) {
         this.position = cell;
+        MapController.enterItemToGame(this);
     }
 }

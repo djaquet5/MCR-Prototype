@@ -108,6 +108,10 @@ public class MapController extends Thread{
         newMonsters.add(p);
     }
 
+    public static void enterItemToGame(Item p){
+        items.add(p);
+    }
+
     private static void removeOldMonstersFromGame() {
         monsters.removeAll(monstersGB);
     }
