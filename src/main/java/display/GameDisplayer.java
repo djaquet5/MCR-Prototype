@@ -17,8 +17,6 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
     private static GameDisplayer instance;
 
-    private Cell startCell;
-
     private Timer timer;
 
     private final static int MAZE_SIZE = 1000;
@@ -51,9 +49,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
         this.imageSize = cellSize - 10;
         this.cellOffset = 5;
 
-        this.startCell = dungeon.getCell(0, 0);
-
-        MapController.getHero().setPosition(startCell);
+        MapController.getHero().setPosition(dungeon.getStartCell());
         MapController.discoverCells();
     }
 
@@ -87,9 +83,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
         for(int i = 0; i < dungeon.getDimension(); i++) {
             for(int j = 0; j < dungeon.getDimension(); j++) {
                 Cell currentCell = dungeon.getCells()[i][j];
-                Image sol  = new ImageIcon(currentCell.getFontPath()).getImage();
-                g2d.drawImage(sol, cellOffset + currentCell.getPosX() * cellSize,
-                        cellOffset + currentCell.getPosY() * cellSize, imageSize, imageSize, this);
+                currentCell.draw(g2d);
             }
         }
         for(Prototype p : MapController.getMonsters()){
@@ -112,6 +106,18 @@ public class GameDisplayer extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         repaint();
+    }
+
+    public int getCellOffset() {
+        return cellOffset;
+    }
+
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    public int getImageSize() {
+        return imageSize;
     }
 
     public static GameDisplayer getInstance(){
