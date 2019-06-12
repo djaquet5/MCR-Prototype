@@ -24,6 +24,7 @@ public class BattleMenu extends Thread {
     private JLabel mpMonsterLabel;
     private JLabel pictureLabel;
     private JButton attackButton;
+    // TODO: enable magic Button
     private JButton magicButton;
     private JButton useButton;
     private JLabel infoLabel;
@@ -114,6 +115,7 @@ public class BattleMenu extends Thread {
         info += monster.randomMove(hero);
         updateInfo();
         if(monster.isDead() || hero.isDead()){
+            MapController.enableGame();
             MapController.signal(monster);
         }
     }

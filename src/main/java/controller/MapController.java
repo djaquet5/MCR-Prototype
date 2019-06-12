@@ -14,9 +14,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-// TODO: Add gameEnabled boolean
-
 public class MapController extends Thread{
+    private static boolean gameEnabled = true;
+
     private static int turn = 1;
     private static Dungeon dungeon;
 
@@ -46,6 +46,8 @@ public class MapController extends Thread{
         // move hero
         hero.setPosition(cell);
         if(cell == dungeon.getEndCell()) {
+            // Game over, you won!
+            gameEnabled = false;
             GameOver gameOver = new GameOver();
             gameOver.displayWin();
             game.changePanel(gameOver.getGameOverPanel());
@@ -76,6 +78,7 @@ public class MapController extends Thread{
 
             if(hero.getPosition() == monster.getPosition()){
                 // If same cell initiate battle
+                gameEnabled = false;
                 battle(monster);
             }
         }
@@ -92,7 +95,7 @@ public class MapController extends Thread{
     }
 
     public static void battle(Monster m){
-        // On combat
+        // Enter combat
         Game.getInstance().changePanel(new BattleMenu(m, hero).getBattlePanel());
     }
 
@@ -160,36 +163,38 @@ public class MapController extends Thread{
 
         @Override
         public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN || keyEvent.getKeyCode() == KeyEvent.VK_S) {
-                if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() + 1)) {
-                    System.out.println("Moved down");
-                    MapController.getHero().setDisplayImagePath(getHero().getDisplayImageDown());
-                    MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
-                            MapController.getHero().getPosition().getPosY() + 1));
+            if(gameEnabled) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN || keyEvent.getKeyCode() == KeyEvent.VK_S) {
+                    if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() + 1)) {
+                        System.out.println("Moved down");
+                        MapController.getHero().setDisplayImagePath(getHero().getDisplayImageDown());
+                        MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
+                                MapController.getHero().getPosition().getPosY() + 1));
+                    }
                 }
-            }
-            if (keyEvent.getKeyCode() == KeyEvent.VK_UP || keyEvent.getKeyCode() == KeyEvent.VK_W) {
-                if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() - 1)) {
-                    System.out.println("Moved up");
-                    MapController.getHero().setDisplayImagePath(getHero().getDisplayImageUp());
-                    MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
-                            MapController.getHero().getPosition().getPosY() - 1));
+                if (keyEvent.getKeyCode() == KeyEvent.VK_UP || keyEvent.getKeyCode() == KeyEvent.VK_W) {
+                    if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX(), MapController.getHero().getPosition().getPosY() - 1)) {
+                        System.out.println("Moved up");
+                        MapController.getHero().setDisplayImagePath(getHero().getDisplayImageUp());
+                        MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX(),
+                                MapController.getHero().getPosition().getPosY() - 1));
+                    }
                 }
-            }
-            if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT || keyEvent.getKeyCode() == KeyEvent.VK_D) {
-                if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() + 1, MapController.getHero().getPosition().getPosY())) {
-                    System.out.println("Moved right");
-                    MapController.getHero().setDisplayImagePath(getHero().getDisplayImageRight());
-                    MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() + 1,
-                            MapController.getHero().getPosition().getPosY()));
+                if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT || keyEvent.getKeyCode() == KeyEvent.VK_D) {
+                    if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() + 1, MapController.getHero().getPosition().getPosY())) {
+                        System.out.println("Moved right");
+                        MapController.getHero().setDisplayImagePath(getHero().getDisplayImageRight());
+                        MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() + 1,
+                                MapController.getHero().getPosition().getPosY()));
+                    }
                 }
-            }
-            if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT || keyEvent.getKeyCode() == KeyEvent.VK_A) {
-                if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() - 1, MapController.getHero().getPosition().getPosY())){
-                    System.out.println("Moved left");
-                    MapController.getHero().setDisplayImagePath(getHero().getDisplayImageLeft());
-                    MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() - 1,
-                            MapController.getHero().getPosition().getPosY()));
+                if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT || keyEvent.getKeyCode() == KeyEvent.VK_A) {
+                    if(MapController.getDungeon().isReachable(MapController.getHero().getPosition().getPosX() - 1, MapController.getHero().getPosition().getPosY())){
+                        System.out.println("Moved left");
+                        MapController.getHero().setDisplayImagePath(getHero().getDisplayImageLeft());
+                        MapController.move((ReachableCell) MapController.getDungeon().getCell(MapController.getHero().getPosition().getPosX() - 1,
+                                MapController.getHero().getPosition().getPosY()));
+                    }
                 }
             }
         }
@@ -216,5 +221,9 @@ public class MapController extends Thread{
             // Game Over
             game.setContentPane(new GameOver().getGameOverPanel());
         }
+    }
+
+    public static void enableGame() {
+        gameEnabled = true;
     }
 }
