@@ -18,4 +18,24 @@ public class Warrior extends Hero {
     public Prototype clonePrototype() {
         return new Warrior();
     }
+
+    @Override
+    public String getDisplayImageDown() {
+        return "src/Characters/DM2/face-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageUp() {
+        return "src/Characters/DM2/back-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageRight() {
+        return "src/Characters/DM2/right-stand.png";
+    }
+
+    @Override
+    public String getDisplayImageLeft() {
+        return "src/Characters/DM2/left-stand.png";
+    }
 }
