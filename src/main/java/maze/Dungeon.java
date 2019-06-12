@@ -1,12 +1,9 @@
 package maze;
 
-import controller.MapController;
-
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Random;
 
-import static prototypal.GameFactory.*;
+import static prototypal.GamePrototypeManager.*;
 
 /**
  * Square dungeon made up of Cells.
