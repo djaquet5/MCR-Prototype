@@ -1,7 +1,6 @@
 package display;
 
 import controller.BattleController;
-import controller.MapController;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import magic.Spell;
