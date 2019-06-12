@@ -34,7 +34,6 @@ public class GameDisplayer extends JPanel implements ActionListener {
     }
 
     private void init() {
-        loadImages();
         setBackground(Color.black);
         setPreferredSize(new Dimension(MAZE_SIZE, MAZE_SIZE));
 
@@ -53,8 +52,8 @@ public class GameDisplayer extends JPanel implements ActionListener {
         MapController.discoverCells();
     }
 
-    private void loadImages() {
-        HERO = new ImageIcon(MapController.getHero().getDisplayImage()).getImage();
+    private void loadHeroImage() {
+        HERO = new ImageIcon(MapController.getHero().getDisplayImagePath()).getImage();
     }
 
     @Override
@@ -65,6 +64,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         drawDungeon(g2d);
 
+        loadHeroImage();
         g2d.drawImage(HERO, cellOffset + MapController.getHero().getPosition().getPosX() * cellSize,
                 cellOffset + MapController.getHero().getPosition().getPosY() * cellSize, imageSize, imageSize,  this);
 
@@ -88,7 +88,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
         }
         for(Prototype p : MapController.getMonsters()){
             if(p.getPosition().getIsDiscovered()) {
-                Image mOrS = new ImageIcon(p.getDisplayImage()).getImage();
+                Image mOrS = new ImageIcon(p.getDisplayImagePath()).getImage();
                 g2d.drawImage(mOrS, cellOffset + p.getPosition().getPosX() * cellSize,
                         cellOffset + cellOffset + p.getPosition().getPosY() * cellSize, imageSize, imageSize, this);
             }
@@ -96,7 +96,7 @@ public class GameDisplayer extends JPanel implements ActionListener {
 
         for(Prototype p : MapController.getItems()){
             if(p.getPosition().getIsDiscovered()) {
-                Image mOrS = new ImageIcon(p.getDisplayImage()).getImage();
+                Image mOrS = new ImageIcon(p.getDisplayImagePath()).getImage();
                 g2d.drawImage(mOrS, cellOffset + p.getPosition().getPosX() * cellSize,
                         cellOffset + cellOffset + p.getPosition().getPosY() * cellSize, imageSize, imageSize, this);
             }

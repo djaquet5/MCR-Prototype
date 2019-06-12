@@ -34,7 +34,7 @@ public class BattleMenu extends Thread {
         this.monster = monster;
         this.hero = hero;
 
-        ImageIcon icon = new ImageIcon(monster.getDisplayImage());
+        ImageIcon icon = new ImageIcon(monster.getDisplayImagePath());
         pictureLabel.setDisabledIcon(icon);
 
         attackLabel.setText("Attack");
