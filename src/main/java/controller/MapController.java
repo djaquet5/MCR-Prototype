@@ -27,14 +27,11 @@ public class MapController extends Thread{
 
     private static Game game;
 
-    public MapController(Hero hero, Dungeon dungeon){
+    public MapController(Hero hero){
         this.hero = hero;
-        this.dungeon = dungeon;
         this.game = Game.getInstance();
 
-        for(Monster p : newMonsters){
-            monsters.add(p);
-        }
+        monsters.addAll(newMonsters);
         newMonsters.clear();
     }
 
@@ -131,6 +128,23 @@ public class MapController extends Thread{
 
     public static Dungeon getDungeon(){
         return dungeon;
+    }
+
+    public static void generate10x10Dungeon() {
+        int[][] cells = new int[][]{
+                {9, 7, 7, 1, 0, 0, 0, 1, 7, 8},
+                {1, 2, 1, 1, 0, 0, 1, 1, 7, 8},
+                {7, 1, 8, 1, 0, 0, 1, 0, 0, 0},
+                {1, 1, 1, 2, 0, 0, 3, 0, 0, 0},
+                {0, 0, 0, 8, 0, 8, 1, 1, 4, 0},
+                {0, 1, 3, 1, 0, 1, 0, 0, 1, 0},
+                {0, 1, 0, 0, 0, 2, 0, 1, 1, 1},
+                {0, 4, 1, 1, 1, 1, 0, 1, 1, 1},
+                {0, 1, 1, 7, 1, 1, 0, 1, 1, 6},
+                {0, 7, 1, 5, 8, 1, 0, 10, 6, 0}
+        };
+
+        dungeon = new Dungeon(cells);
     }
 
     public static class Controls extends KeyAdapter {

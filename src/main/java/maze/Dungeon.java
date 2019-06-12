@@ -101,23 +101,6 @@ public class Dungeon {
         return cells[posX][posY];
     }
 
-    public static Dungeon generate10x10Dungeon() {
-        int[][] cells = new int[][]{
-                {9, 7, 7, 1, 0, 0, 0, 1, 7, 8},
-                {1, 2, 1, 1, 0, 0, 1, 1, 7, 8},
-                {7, 1, 8, 1, 0, 0, 1, 0, 0, 0},
-                {1, 1, 1, 2, 0, 0, 3, 0, 0, 0},
-                {0, 0, 0, 8, 0, 8, 1, 1, 4, 0},
-                {0, 1, 3, 1, 0, 1, 0, 0, 1, 0},
-                {0, 1, 0, 0, 0, 2, 0, 1, 1, 1},
-                {0, 4, 1, 1, 1, 1, 0, 1, 1, 1},
-                {0, 1, 1, 7, 1, 1, 0, 1, 1, 6},
-                {0, 7, 1, 5, 8, 1, 0, 10, 6, 0}
-        };
-
-        return new Dungeon(cells);
-    }
-
     public int getMaxX(){
         return x;
     }
