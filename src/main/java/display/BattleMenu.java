@@ -37,7 +37,10 @@ public class BattleMenu extends Thread {
         this.hero = hero;
 
         ImageIcon icon = new ImageIcon(monster.getDisplayImage());
-        pictureLabel.setDisabledIcon(icon);
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(600, 600,  java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        pictureLabel.setIcon(icon);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
         hpHeroLabel.setForeground(Color.GREEN);
