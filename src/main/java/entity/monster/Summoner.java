@@ -31,8 +31,8 @@ public class Summoner extends Monster {
         spellSlots.add(new Spell("Fire Whip", 66, 20));
         spellSlots.add(new Spell("Icy Wind", 30, 5));
         spellSlots.add(new Spell("Spectral Inferno", 102, 30));
-        inventory.put(new Ether(), 2);
-        inventory.put(new Potion(), 1);
+        addToInventory(new Ether(), 2);
+        addToInventory(new Potion(), 1);
     }
 
     @Override
@@ -40,19 +40,14 @@ public class Summoner extends Monster {
         Random rand = new Random();
         switch (rand.nextInt(10)){
             case 0:
-                Iterator<Map.Entry<Item, Integer>> items = inventory.entrySet().iterator();
-                items.next();
-                if(items.next().getValue() > 0) {
-                    return BattleController.useItem(this, (inventory.entrySet().iterator().next()).getKey());
-                }
             case 1:
+                if(inventory.size() > 0) {
+                    return BattleController.useItem(this, inventory.get(rand.nextInt(inventory.size())));
+                }
             case 2:
             case 3:
                 return BattleController.castSpell(this, getRandomSpell(), hero);
             case 4:
-                if(inventory.entrySet().iterator().next().getValue() > 0) {
-                    return BattleController.useItem(this, (inventory.entrySet().iterator().next()).getKey());
-                }
             default:
                 return BattleController.attack(this, hero);
         }

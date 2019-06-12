@@ -15,6 +15,11 @@ public abstract class Item implements Prototype {
         this.image = image;
     }
 
+    public Item(Item item) {
+        this.name = item.name;
+        this.image = item.image;
+    }
+
     public abstract void use(GameCharacter gameCharacter);
 
     @Override

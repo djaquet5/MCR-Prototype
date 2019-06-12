@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class BattleMenu extends Thread {
     private JPanel battlePanel;
-    private JComboBox<Map.Entry<Item, Integer>> comboBoxObject;
+    private JComboBox<Item> comboBoxObject;
     private JComboBox<Spell> comboBoxMagic;
     private JLabel hpHeroLabel;
     private JLabel mpHeroLabel;
@@ -86,11 +86,15 @@ public class BattleMenu extends Thread {
             movement();
         });
 
-        for(Map.Entry<Item, Integer> item : hero.getInventory().entrySet()){
+        for(Item item : hero.getInventory()){
             comboBoxObject.addItem(item);
         }
         comboBoxObject.addActionListener(actionEvent -> {
-            info = BattleController.useItem(hero, ((Map.Entry<Item, Integer>) Objects.requireNonNull(comboBoxObject.getSelectedItem())).getKey()) + "\n";
+            info = BattleController.useItem(hero, (Item)comboBoxObject.getSelectedItem())+ "\n";
+            comboBoxObject.removeAllItems();
+            for(Item item : hero.getInventory()){
+                comboBoxObject.addItem(item);
+            }
             movement();
         });
         info = "A wild " + monster + " appears ! ";
@@ -116,9 +120,5 @@ public class BattleMenu extends Thread {
 
     public JPanel getBattlePanel(){
         return battlePanel;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

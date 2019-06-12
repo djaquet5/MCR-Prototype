@@ -14,7 +14,7 @@ public class Octopus extends Monster {
         super(65, 65, 75, 75, 40, 40, "src/monsters/Octopus/octopus.png", 33);
         spellSlots.add(new Spell("Round Ball", 55, 10));
         spellSlots.add(new Spell("Ignition Ink", 30, 5));
-        inventory.put(new Potion(), 1);
+        addToInventory(new Potion(), 1);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class Octopus extends Monster {
             case 1:
                 return BattleController.castSpell(this, getRandomSpell(), hero);
             case 2:
-                if(inventory.entrySet().iterator().next().getValue() > 0) {
-                    return BattleController.useItem(this, inventory.entrySet().iterator().next().getKey());
+                if(inventory.size() > 0) {
+                    return BattleController.useItem(this, inventory.get(0));
                 }
             default:
                  return BattleController.attack(this, hero);

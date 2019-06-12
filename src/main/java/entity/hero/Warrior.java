@@ -3,6 +3,7 @@ package entity.hero;
 import magic.Spell;
 import prototypal.Prototype;
 import stuff.Ether;
+import stuff.Potion;
 
 public class Warrior extends Hero {
 
@@ -11,7 +12,7 @@ public class Warrior extends Hero {
         spellSlots.add(new Spell("War Cry", 10, 6));
         spellSlots.add(new Spell("Double Fists", 100, 21));
         spellSlots.add(new Spell("Exploooooooooosion", 40000, 666));
-        inventory.put(new Ether(), 2);
+        addToInventory(new Potion(), 2);
     }
 
     @Override

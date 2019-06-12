@@ -10,8 +10,6 @@ import stuff.Ether;
 import stuff.Item;
 import stuff.Potion;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -19,8 +17,8 @@ public class Slime extends Monster{
     public Slime(){
         super(60, 20, 40, 180, 20, 10, "src/monsters/Slime/slime.png", 10);
         spellSlots.add(new Spell("Acid Body", 40, 4));
-        inventory.put(new Potion(), 1);
-        inventory.put(new Ether(), 1);
+        addToInventory(new Potion(), 1);
+        addToInventory(new Ether(), 1);
     }
 
     /**
@@ -42,12 +40,8 @@ public class Slime extends Monster{
         Random rand = new Random();
         switch (rand.nextInt(8)){
             case 0:
-                Iterator<Map.Entry<Item, Integer>> items = inventory.entrySet().iterator();
-                if(items.next().getValue() > 0) {
-                    return BattleController.useItem(this, inventory.entrySet().iterator().next().getKey());
-                }
-                if(items.next().getValue() > 0) {
-                    return BattleController.useItem(this, (inventory.entrySet().iterator().next()).getKey());
+                if(inventory.size() > 0) {
+                    return BattleController.useItem(this, inventory.get(rand.nextInt(inventory.size())));
                 }
             case 1:
             case 2:

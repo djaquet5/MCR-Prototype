@@ -6,9 +6,7 @@ import prototypal.Prototype;
 import stuff.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class GameCharacter implements Prototype {
     private int hp;
@@ -21,7 +19,7 @@ public abstract class GameCharacter implements Prototype {
     private int magicDefence;
     private String displayImagePath;
     protected List<Spell> spellSlots;
-    protected Map<Item, Integer> inventory;
+    protected List<Item> inventory;
     private Cell position;
 
     public GameCharacter(int hp, int mp, int attack, int defence, int magic, int magicDefence, String displayImagePath){
@@ -33,15 +31,15 @@ public abstract class GameCharacter implements Prototype {
         this.magicDefence = magicDefence;
         this.displayImagePath = displayImagePath;
 
-        spellSlots = new ArrayList<Spell>();
-        inventory = new HashMap<Item, Integer>();
+        spellSlots = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
     public int getMaxHp() {
         return maxHp;
     }
 
-    public void setMaxHp(int maxHp) {
+    protected void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
 
@@ -49,7 +47,7 @@ public abstract class GameCharacter implements Prototype {
         return maxMp;
     }
 
-    public void setMaxMp(int maxMp) {
+    protected void setMaxMp(int maxMp) {
         this.maxMp = maxMp;
     }
 
@@ -73,7 +71,7 @@ public abstract class GameCharacter implements Prototype {
         return attack;
     }
 
-    public int getDefence(){
+    protected int getDefence(){
         return defence;
     }
 
@@ -81,7 +79,7 @@ public abstract class GameCharacter implements Prototype {
         return magic;
     }
 
-    public int getMagicDefence(){
+    protected int getMagicDefence(){
         return magicDefence;
     }
 
@@ -90,11 +88,11 @@ public abstract class GameCharacter implements Prototype {
         return displayImagePath;
     }
 
-    public void setHp(int hp) {
+    protected void setHp(int hp) {
         this.hp = hp;
     }
 
-    public void setMp(int mp) {
+    protected void setMp(int mp) {
         this.mp = mp;
     }
 
@@ -102,7 +100,7 @@ public abstract class GameCharacter implements Prototype {
         this.attack = attack;
     }
 
-    public void setDefence(int defence) {
+    protected void setDefence(int defence) {
         this.defence = defence;
     }
 
@@ -110,7 +108,7 @@ public abstract class GameCharacter implements Prototype {
         this.magic = magic;
     }
 
-    public void setMagicDefence(int magicDefence) {
+    protected void setMagicDefence(int magicDefence) {
         this.magicDefence = magicDefence;
     }
 
@@ -129,33 +127,19 @@ public abstract class GameCharacter implements Prototype {
         this.position = position;
     }
 
-    public void learnSpell(Spell spell) {
-        if (spellSlots.contains(spell))
-            System.out.println("Spell already known!");
-        else
-            spellSlots.add(spell);
-    }
-
-    public Map<Item, Integer> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
-    public void addToinventory(Item item, int amount) {
-        if (inventory.containsKey(item)) {
-            inventory.put(item, inventory.get(item) + amount);
-        } else {
-            inventory.put(item, amount);
+    public void addToInventory(Item item, int amount) {
+        for(int i = 0; i < amount; ++i) {
+            inventory.add(item);
         }
+
     }
 
-    public void useItem(Item item) {
-        if (inventory.containsKey(item)) {
-            inventory.put(item, inventory.get(item) - 1);
-            item.use(this);
-            if (inventory.get(item) == 0) {
-                inventory.remove(item);
-            }
-        }
+    public void useItem(Item item){
+        item.use(this);inventory.remove(item);
     }
 
     public int attack(GameCharacter c){
@@ -177,10 +161,6 @@ public abstract class GameCharacter implements Prototype {
         this.modifyMp(spell.getMpCost() * -1);
 
         return damage;
-    }
-
-    public boolean hasInInventory(Item item) {
-        return inventory.containsKey(item) && inventory.get(item) > 0;
     }
 
     public void initialize(Cell cell) {
