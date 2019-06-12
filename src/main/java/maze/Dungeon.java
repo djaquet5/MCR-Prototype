@@ -69,19 +69,23 @@ public class Dungeon {
         }
     }
 
+    public boolean isMonsterReachable(int x, int y) {
+        return isReachable(x, y) && cells[x][y] != endCell;
+    }
+
     public ReachableCell getRandomAdjacentReachableCell(Cell rc){
         LinkedList<ReachableCell> reachableCells = new LinkedList<>();
 
-        if(isReachable(rc.getPosX(), rc.getPosY() - 1))
+        if(isMonsterReachable(rc.getPosX(), rc.getPosY() - 1))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX()][rc.getPosY() - 1]);
 
-        if(isReachable(rc.getPosX(), rc.getPosY() + 1))
+        if(isMonsterReachable(rc.getPosX(), rc.getPosY() + 1))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX()][rc.getPosY() + 1]);
 
-        if(isReachable(rc.getPosX() - 1, rc.getPosY()))
+        if(isMonsterReachable(rc.getPosX() - 1, rc.getPosY()))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX() - 1][rc.getPosY()]);
 
-        if(isReachable(rc.getPosX() + 1, rc.getPosY()))
+        if(isMonsterReachable(rc.getPosX() + 1, rc.getPosY()))
             reachableCells.add((ReachableCell) this.cells[rc.getPosX() + 1][rc.getPosY()]);
 
         Random rand = new Random();

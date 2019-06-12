@@ -16,7 +16,7 @@ public abstract class Cell implements PrototypeMaze {
     Cell(Cell c) {
         this.posX = c.posX;
         this.posY = c.posY;
-        this.isDiscovered = true;
+        this.isDiscovered = false;
     }
 
     public Cell(){

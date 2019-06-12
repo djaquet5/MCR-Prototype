@@ -11,8 +11,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Map;
-import java.util.Objects;
 
 public class BattleMenu extends Thread {
     private JPanel battlePanel;
@@ -31,6 +29,9 @@ public class BattleMenu extends Thread {
     private Hero hero;
 
     private String info;
+
+    private Spell selectedSpell;
+    private Item selectedItem;
 
     public BattleMenu(Monster monster, Hero hero){
         this.monster = monster;
@@ -75,28 +76,48 @@ public class BattleMenu extends Thread {
             public void mouseExited(MouseEvent mouseEvent) {}
         });
 
-        magicButton.setText("Cast magic");
-        useButton.setText("Use item");
-
-        for(Spell spell : hero.getSpellSlots()){
-            comboBoxMagic.addItem(spell);
+        if(!hero.getSpellSlots().isEmpty()) {
+            // First spell selected by default
+            selectedSpell = hero.getSpellSlots().get(0);
+            for(Spell spell : hero.getSpellSlots()){
+                comboBoxMagic.addItem(spell);
+            }
+            comboBoxMagic.addActionListener(actionEvent -> {
+                selectedSpell = (Spell) comboBoxMagic.getSelectedItem();
+            });
         }
-        comboBoxMagic.addActionListener(actionEvent -> {
-            info = BattleController.castSpell(hero, (Spell) comboBoxMagic.getSelectedItem(), monster) + "\n";
-            movement();
-        });
 
-        for(Item item : hero.getInventory()){
-            comboBoxObject.addItem(item);
-        }
-        comboBoxObject.addActionListener(actionEvent -> {
-            info = BattleController.useItem(hero, (Item)comboBoxObject.getSelectedItem())+ "\n";
-            comboBoxObject.removeAllItems();
+        if(!hero.getInventory().isEmpty()) {
+            // First item selected by default
+            selectedItem = hero.getInventory().get(0);
             for(Item item : hero.getInventory()){
                 comboBoxObject.addItem(item);
             }
-            movement();
+            comboBoxObject.addActionListener(actionEvent -> {
+                selectedItem = (Item)comboBoxObject.getSelectedItem();
+            });
+        }
+
+        magicButton.setText("Cast magic");
+        magicButton.addActionListener(actionEvent -> {
+            if(selectedSpell != null) {
+                info = BattleController.castSpell(hero, selectedSpell, monster) + "\n";
+                movement();
+            }
         });
+
+        useButton.setText("Use item");
+        useButton.addActionListener(actionEvent -> {
+            if(selectedItem != null) {
+                info = BattleController.useItem(hero, selectedItem)+ "\n";
+                comboBoxObject.removeAllItems();
+                for(Item item : hero.getInventory()){
+                    comboBoxObject.addItem(item);
+                }
+                movement();
+            }
+        });
+
         info = "A wild " + monster + " appears ! ";
         updateInfo();
     }
@@ -114,6 +135,7 @@ public class BattleMenu extends Thread {
         info += monster.randomMove(hero);
         updateInfo();
         if(monster.isDead() || hero.isDead()){
+            MapController.enableGame();
             MapController.signal(monster);
         }
     }
