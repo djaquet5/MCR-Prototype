@@ -1,6 +1,7 @@
 package display;
 
 import controller.BattleController;
+import controller.MapController;
 import entity.hero.Hero;
 import entity.monster.Monster;
 import magic.Spell;
@@ -98,7 +99,7 @@ public class BattleMenu extends Thread {
         info += monster.randomMove(hero);
         updateInfo();
         if(monster.isDead() || hero.isDead()){
-            SwingUtilities.getWindowAncestor(battlePanel).dispose();
+            MapController.signal(monster);
         }
     }
 
